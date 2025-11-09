@@ -59,25 +59,20 @@ chmod +x install.sh
 ./install.sh
 
 # 4. After installation, just run Katifetch
-katifetch`}
+katifetch
+
+# On AUR (yay)
+yay -S katifetch
+
+# On Fedora Copr
+sudo dnf copr enable ximios/katifetch 
+
+# Install katifetch With Fedora Copr
+sudo dnf copr enable ximios/katifetch `}
         </pre>
 
         <p className="mt-3">
           That's it! Katifetch is now installed and ready to use.
-        </p>
-      </div>
-
-      {/* Additional Information */}
-      <div className="text-left bg-slate-800/50 p-6 rounded-lg text-slate-200">
-        <h3 className="text-2xl font-semibold mb-3">About Katifetch</h3>
-        <p className="mb-2">
-          Katifetch is a lightweight terminal system info tool, inspired by <strong>Neofetch</strong> for Linux and Termux. It provides system details such as OS, kernel, desktop environment, uptime, memory usage, and more, with colorful ASCII logos and modular themes.
-        </p>
-        <p className="mb-2">
-          Unlike Neofetch, Katifetch has been adapted for multiple platforms including <strong>Windows, macOS, ChromeOS, Android (Termux)</strong>, and works even in virtual machines like VMWare, VirtualBox, and QEMU.
-        </p>
-        <p>
-          Katifetch is designed to be fully customizable, easy to use, and fast. It also includes installer scripts for simplified installation on supported platforms.
         </p>
       </div>
     </motion.div>
