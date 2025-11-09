@@ -4,5 +4,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/katifetch-site/", // <--- importante para GitHub Pages
+  base: "/katifetch-site/", // importante para que funcione en GitHub Pages
 });
