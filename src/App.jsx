@@ -95,7 +95,7 @@ export default function KatifetchLanding() {
           >
             <img 
               src="src/infokati.png" 
-              alt="Katifetch Info" 
+              alt="src/infokati.png" 
               className="max-w-full h-auto rounded-lg"
             />
           </motion.div>
