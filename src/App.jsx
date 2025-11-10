@@ -94,7 +94,7 @@ export default function KatifetchLanding() {
             className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 shadow-2xl flex justify-center items-center"
           >
             <img 
-              src="/public/infokati.png" 
+              src="src/infokati.png" 
               alt="Katifetch Info" 
               className="max-w-full h-auto rounded-lg"
             />
