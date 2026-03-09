@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
-import infokati from "./infokati.png"; // ✅ Importar la imagen correctamente
+import infokati from "./infokati.png"; 
 
 export default function KatifetchLanding() {
   const [showInfo, setShowInfo] = useState(false);
