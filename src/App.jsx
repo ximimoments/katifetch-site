@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
+import infokati from "./infokati.png"; // ✅ Importar la imagen correctamente
 
 export default function KatifetchLanding() {
   const [showInfo, setShowInfo] = useState(false);
@@ -73,17 +74,17 @@ export default function KatifetchLanding() {
 
             {showInfo && (
               <div className="p-4 mt-4 rounded-xl bg-slate-800/50 border border-slate-700 text-sm text-slate-200 space-y-2">
-                <p>
-   <h3 className="text-2xl font-semibold mb-3">About Katifetch</h3>
-        <p className="mb-2">
-          Katifetch is a lightweight terminal system info tool, inspired by <strong>Neofetch</strong> for Linux and Termux. It provides system details such as OS, kernel, desktop environment, uptime, memory usage, and more, with colorful ASCII logos and modular themes.
-        </p>
-        <p className="mb-2">
-          Unlike Neofetch, Katifetch has been adapted for multiple platforms including <strong>Windows, macOS, ChromeOS, Android (Termux)</strong>, and works even in virtual machines lines like VMWare, VirtualBox, and QEMU.
-        </p>
-          Katifetch is designed to be fully customizable, easy to use, and fast. It also includes installer scripts for simplified installation on supported platforms.
+                <h3 className="text-2xl font-semibold mb-3">About Katifetch</h3>
+                <p className="mb-2">
+                  Katifetch is a lightweight terminal system info tool, inspired by <strong>Neofetch</strong> for Linux and Termux. It provides system details such as OS, kernel, desktop environment, uptime, memory usage, and more, with colorful ASCII logos and modular themes.
                 </p>
-            </div>
+                <p className="mb-2">
+                  Unlike Neofetch, Katifetch has been adapted for multiple platforms including <strong>Windows, macOS, ChromeOS, Android (Termux)</strong>, and works even in virtual machines lines like VMWare, VirtualBox, and QEMU.
+                </p>
+                <p>
+                  Katifetch is designed to be fully customizable, easy to use, and fast. It also includes installer scripts for simplified installation on supported platforms.
+                </p>
+              </div>
             )}
           </motion.div>
 
@@ -94,8 +95,8 @@ export default function KatifetchLanding() {
             className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 shadow-2xl flex justify-center items-center"
           >
             <img 
-              src="src/infokati.png" 
-              alt="src/infokati.png" 
+              src={infokati} 
+              alt="Katifetch info" 
               className="max-w-full h-auto rounded-lg"
             />
           </motion.div>
