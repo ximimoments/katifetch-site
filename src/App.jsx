@@ -72,6 +72,10 @@ export default function KatifetchLanding() {
               </a>
             </div>
 
+<a href="https://repology.org/project/katifetch/versions">
+    <img src="https://repology.org/badge/vertical-allrepos/katifetch.svg" alt="Packaging status">
+</a>
+            
             {showInfo && (
               <div className="p-4 mt-4 rounded-xl bg-slate-800/50 border border-slate-700 text-sm text-slate-200 space-y-2">
                 <h3 className="text-2xl font-semibold mb-3">About Katifetch</h3>
