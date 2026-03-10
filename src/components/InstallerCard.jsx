@@ -49,7 +49,8 @@ export default function InstallerCard() {
         </p>
 
         <pre className="bg-slate-900/40 p-4 rounded-lg overflow-auto text-sm">
-{`# 1. Clone the repository
+{` # On Linux (Manual)
+# 1. Clone the repository
 git clone https://github.com/ximimoments/katifetch.git && cd katifetch
 
 # 2. Make the installer executable
@@ -68,7 +69,10 @@ yay -S katifetch
 sudo dnf copr enable ximios/katifetch 
 
 # Install katifetch With Fedora Copr
-sudo dnf copr enable ximios/katifetch `}
+sudo dnf copr enable ximios/katifetch
+
+# On Windows (With Chocolatey)
+choco install katifetch `}
         </pre>
 
         <p className="mt-3">
