@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
-import infokati from "./infokati.png"; 
 
 export default function KatifetchLanding() {
   const [showInfo, setShowInfo] = useState(false);
@@ -72,9 +71,9 @@ export default function KatifetchLanding() {
               </a>
             </div>
 
-<a href="https://repology.org/project/katifetch/versions">
-    <img src="https://repology.org/badge/vertical-allrepos/katifetch.svg" alt="Packaging status">
-</a>
+            <a href="https://repology.org/project/katifetch/versions">
+              <img src="https://repology.org/badge/vertical-allrepos/katifetch.svg" alt="Packaging status" />
+            </a>
             
             {showInfo && (
               <div className="p-4 mt-4 rounded-xl bg-slate-800/50 border border-slate-700 text-sm text-slate-200 space-y-2">
@@ -98,11 +97,11 @@ export default function KatifetchLanding() {
             animate={{ opacity: 1, scale: 1 }}
             className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 shadow-2xl flex justify-center items-center"
           >
-         <img 
-            src={import.meta.env.BASE_URL + "infokati.png"}  
-            alt="Katifetch info" 
-            className="max-w-full h-auto rounded-lg"
-          />
+            <img 
+              src={import.meta.env.BASE_URL + "infokati.png"}  
+              alt="Katifetch info" 
+              className="max-w-full h-auto rounded-lg"
+            />
           </motion.div>
         </section>
 
