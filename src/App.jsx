@@ -111,6 +111,8 @@ export default function KatifetchLanding() {
           <InstallerCard />
         </div>
 
+        <LogoRequest />
+        
         <footer className="mt-20 border-t border-slate-800/60 pt-8 pb-12 text-center text-sm text-slate-400">
           © {new Date().getFullYear()} Katifetch — Built by kati dev
         </footer>
