@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
+import LogoRequest from "./components/LogoRequest";
 
 export default function KatifetchLanding() {
   const [showInfo, setShowInfo] = useState(false);
