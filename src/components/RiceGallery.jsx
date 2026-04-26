@@ -38,7 +38,7 @@ export default function RiceGallery() {
     <section className="mt-28 py-10 overflow-hidden bg-slate-950/50 border-y border-slate-800/50">
       <div className="text-center mb-16 px-6">
         <h2 className="text-3xl font-extrabold tracking-tighter text-white italic uppercase">
-          Community Showcase
+          The OS Gallery
         </h2>
         <p className="text-slate-400 mt-3 text-sm max-w-md mx-auto">
           Click on any setup to explore the details of Katifetch in action.
