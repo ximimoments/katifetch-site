@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
 import LogoRequest from "./components/LogoRequest";
+import RiceGallery from "./components/RiceGallery";
 
 export default function KatifetchLanding() {
   const [showInfo, setShowInfo] = useState(false);
@@ -112,6 +113,8 @@ export default function KatifetchLanding() {
         <div className="mt-20">
           <InstallerCard />
         </div>
+
+         <RiceGallery />
         
         <footer className="mt-20 border-t border-slate-800/60 pt-8 pb-12 text-center text-sm text-slate-400">
           © {new Date().getFullYear()} Katifetch — Built by kati dev
