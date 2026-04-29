@@ -14,10 +14,9 @@ export default function App() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      /* FONDO MATRIX: Negro puro para móviles y PC */
       className="min-h-screen bg-black text-slate-100 font-sans relative overflow-x-hidden"
     >
-      {/* CAPA DE CUADRÍCULA MATRIX (Sutil) */}
+      {/* FONDO MATRIX */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-20">
         <div 
           className="absolute inset-0" 
@@ -29,7 +28,7 @@ export default function App() {
       </div>
 
       <div className="relative z-10">
-        {/* Header - Responsivo (px-4 en móvil, px-6 en PC) */}
+        {/* Header Responsivo */}
         <header className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex items-center justify-between">
           <div className="flex items-center gap-3 md:gap-4">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black border border-green-500 shadow-[0_0_15px_rgba(0,255,65,0.2)] flex items-center justify-center">
@@ -37,13 +36,13 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-base md:text-lg font-bold">Katifetch</h1>
-              <p className="text-[10px] md:text-xs text-green-500/60 font-mono">
-                {">"} lightweight_fetcher
+              <p className="text-[10px] md:text-xs text-green-500/60 font-mono italic">
+                [katidev@system ~]$ _
               </p>
             </div>
           </div>
 
-          <nav className="flex items-center gap-3">
+          <nav>
             <a
               href="https://github.com/ximimoments/katifetch"
               target="_blank"
@@ -55,7 +54,6 @@ export default function App() {
           </nav>
         </header>
 
-        {/* Main content */}
         <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
           <AnimatePresence mode="wait">
             {showApache ? (
@@ -69,26 +67,16 @@ export default function App() {
                   onClick={() => setShowApache(false)}
                   className="mb-6 text-xs font-mono text-green-500 hover:text-white border border-green-500/30 px-3 py-1 rounded-md"
                 >
-                  [ ↩ RETURN_TO_SYSTEM ]
+                  [ ↩ VOLVER AL INICIO ]
                 </button>
                 <ApacheView />
               </motion.div>
             ) : (
-              <motion.div
-                key="landing"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                {/* Sección Hero: Se apila en móvil (order-2 en texto para que la imagen quede arriba si quieres) */}
+              <motion.div key="landing" exit={{ opacity: 0 }}>
+                {/* Hero Section Adaptable */}
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                   
-                  {/* Info Izquierda */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="space-y-6 text-center md:text-left order-2 md:order-1"
-                  >
+                  <div className="space-y-6 text-center md:text-left order-2 md:order-1">
                     <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
                       Katifetch — system info with <span className="text-[#00ff41] drop-shadow-[0_0_8px_rgba(0,255,65,0.4)]">style</span>
                     </h2>
@@ -100,52 +88,36 @@ export default function App() {
                     <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
                       <button
                         onClick={() => setShowInfo(!showInfo)}
-                        className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-green-600 text-white font-bold shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:bg-green-500 transition"
+                        className="px-6 py-3 rounded-xl bg-green-600 text-white font-bold shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:bg-green-500 transition"
                       >
                         Learn More
                       </button>
                       <a
                         href="https://github.com/ximimoments/katifetch"
-                        className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition font-mono text-sm"
+                        className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition font-mono text-sm"
                       >
                         More Details
                       </a>
                     </div>
 
-                    <div className="flex justify-center md:justify-start">
-                      <a href="https://repology.org/project/katifetch/versions">
-                        <img src="https://repology.org/badge/vertical-allrepos/katifetch.svg" alt="Packaging status" className="opacity-80 hover:opacity-100 transition" />
-                      </a>
-                    </div>
-                    
                     {showInfo && (
                       <motion.div 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
-                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-xs md:text-sm text-left text-slate-300 font-mono"
+                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-xs text-left text-slate-300 font-mono"
                       >
-                        <p className="mb-2 text-[#00ff41]"># ABOUT_KATIFETCH</p>
-                        <p>Katifetch provides system details like OS, kernel, and uptime with colorful ASCII logos.</p>
-                        <p className="mt-2">Supports: Windows, macOS, Android (Termux) and Linux VMs.</p>
+                        Katifetch is a lightweight terminal system info tool, adapted for Windows, macOS, ChromeOS, and Android (Termux).
                       </motion.div>
                     )}
-                  </motion.div>
+                  </div>
 
-                  {/* Imagen Derecha (Aparece arriba en móvil por ser order-1) */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex justify-center items-center order-1 md:order-2"
-                  >
-                    <div className="relative group">
-                      <div className="absolute -inset-1 bg-green-500/20 rounded-2xl blur opacity-20 group-hover:opacity-40 transition"></div>
-                      <img 
-                        src={import.meta.env.BASE_URL + "infokati.png"}  
-                        alt="Katifetch info" 
-                        className="relative max-w-full h-auto rounded-xl border border-white/10 shadow-2xl"
-                      />
-                    </div>
-                  </motion.div>
+                  <div className="flex justify-center order-1 md:order-2">
+                    <img 
+                      src={import.meta.env.BASE_URL + "infokati.png"}  
+                      alt="Katifetch info" 
+                      className="max-w-[280px] sm:max-w-full h-auto rounded-xl border border-white/10 shadow-2xl"
+                    />
+                  </div>
                 </section>
 
                 <div className="mt-16 md:mt-24 space-y-16 md:space-y-24">
@@ -157,13 +129,14 @@ export default function App() {
             )}
           </AnimatePresence>
           
-          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 text-center text-xs font-mono text-slate-600">
+          {/* FOOTER CON EL TEXTO ORIGINAL */}
+          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 text-center text-xs text-slate-500">
             © {new Date().getFullYear()} Katifetch — 
             <button 
               onClick={() => setShowApache(true)} 
               className="ml-1 hover:text-green-500 transition-colors"
             >
-              [ ROOT_ACCESS ]
+              Built by kati dev
             </button>
           </footer>
         </main>
