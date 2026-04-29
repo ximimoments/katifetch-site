@@ -1,0 +1,38 @@
+name: Apache Auto-Indexer
+on: 
+  push:
+    paths:
+      - 'public/download/**' # Solo se activa si subes algo a descargas
+
+jobs:
+  generate-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Para que pueda guardar el JSON en tu repo
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create JSON list
+        run: |
+          cd public
+          echo "[" > files.json
+          # Listar archivos omitiendo el propio files.json y carpetas vacías
+          for f in download/*; do
+            if [ -f "$f" ]; then
+              name=$(basename "$f")
+              size=$(du -h "$f" | cut -f1)
+              date=$(date -r "$f" +"%Y-%m-%d %H:%M")
+              echo "{\"name\": \"$name\", \"size\": \"$size\", \"date\": \"$date\"}," >> files.json
+            fi
+          done
+          # Arreglar la última coma para que el JSON sea válido
+          sed -i '$ s/,$//' files.json
+          echo "]" >> files.json
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "Katifetch Bot"
+          git config --global user.email "bot@katifetch.pages.dev"
+          git add public/files.json
+          git commit -m "auto: update download index" || exit 0
+          git push
