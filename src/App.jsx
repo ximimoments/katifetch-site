@@ -16,7 +16,7 @@ export default function App() {
       animate={{ opacity: 1 }}
       className="min-h-screen bg-black text-slate-100 font-sans relative overflow-x-hidden"
     >
-      {/* FONDO MATRIX */}
+      {/* MATRIX BACKGROUND LAYER */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-20">
         <div 
           className="absolute inset-0" 
@@ -28,7 +28,7 @@ export default function App() {
       </div>
 
       <div className="relative z-10">
-        {/* Header Responsivo */}
+        {/* Header */}
         <header className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex items-center justify-between">
           <div className="flex items-center gap-3 md:gap-4">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black border border-green-500 shadow-[0_0_15px_rgba(0,255,65,0.2)] flex items-center justify-center">
@@ -67,13 +67,12 @@ export default function App() {
                   onClick={() => setShowApache(false)}
                   className="mb-6 text-xs font-mono text-green-500 hover:text-white border border-green-500/30 px-3 py-1 rounded-md"
                 >
-                  [ ↩ VOLVER AL INICIO ]
+                  [ ↩ BACK TO HOME ]
                 </button>
                 <ApacheView />
               </motion.div>
             ) : (
               <motion.div key="landing" exit={{ opacity: 0 }}>
-                {/* Hero Section Adaptable */}
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                   
                   <div className="space-y-6 text-center md:text-left order-2 md:order-1">
@@ -106,7 +105,8 @@ export default function App() {
                         animate={{ height: "auto", opacity: 1 }}
                         className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-xs text-left text-slate-300 font-mono"
                       >
-                        Katifetch is a lightweight terminal system info tool, adapted for Windows, macOS, ChromeOS, and Android (Termux).
+                        {/* FIXED: No more Spanish here */}
+                        Katifetch is a lightweight terminal system info tool, inspired by Neofetch. It has been adapted for multiple platforms including Windows, macOS, ChromeOS, and Android (Termux).
                       </motion.div>
                     )}
                   </div>
@@ -129,7 +129,6 @@ export default function App() {
             )}
           </AnimatePresence>
           
-          {/* FOOTER CON EL TEXTO ORIGINAL */}
           <footer className="mt-20 border-t border-white/5 pt-8 pb-12 text-center text-xs text-slate-500">
             © {new Date().getFullYear()} Katifetch — 
             <button 
