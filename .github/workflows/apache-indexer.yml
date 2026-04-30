@@ -2,7 +2,7 @@ name: Apache Auto-Indexer
 on: 
   push:
     paths:
-      - 'public/download/**'
+      - 'public/**'
 
 jobs:
   generate-index:
@@ -19,7 +19,8 @@ jobs:
             echo "[" > "$dir/files.json"
             for f in "$dir"/*; do
               name=$(basename "$f")
-              if [ "$name" = "files.json" ]; then continue; fi
+              # Ignorar archivos que no queremos en el índice
+              if [[ "$name" == "files.json" || "$name" == "index.html" || "$name" == *.png || "$name" == *.ico ]]; then continue; fi
               
               date=$(date -r "$f" +"%Y-%m-%d %H:%M")
               
@@ -35,12 +36,12 @@ jobs:
             echo "]" >> "$dir/files.json"
           }
 
-          index_dir "public/download"
+          index_dir "public"
 
       - name: Commit and Push
         run: |
           git config --global user.name "Katifetch Bot"
           git config --global user.email "bot@katifetch.pages.dev"
-          git add public/download/**/files.json
-          git commit -m "auto: update recursive download index" || exit 0
+          git add public/**/files.json
+          git commit -m "auto: update recursive index from public root" || exit 0
           git push
