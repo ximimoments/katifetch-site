@@ -2,37 +2,45 @@ name: Apache Auto-Indexer
 on: 
   push:
     paths:
-      - 'public/download/**' # Solo se activa si subes algo a descargas
+      - 'public/download/**'
 
 jobs:
   generate-index:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Para que pueda guardar el JSON en tu repo
+      contents: write
     steps:
       - uses: actions/checkout@v4
       
-      - name: Create JSON list
+      - name: Create Recursive JSON Index
         run: |
-          cd public
-          echo "[" > files.json
-          # Listar archivos omitiendo el propio files.json y carpetas vacías
-          for f in download/*; do
-            if [ -f "$f" ]; then
+          index_dir() {
+            local dir=$1
+            echo "[" > "$dir/files.json"
+            for f in "$dir"/*; do
               name=$(basename "$f")
-              size=$(du -h "$f" | cut -f1)
+              if [ "$name" = "files.json" ]; then continue; fi
+              
               date=$(date -r "$f" +"%Y-%m-%d %H:%M")
-              echo "{\"name\": \"$name\", \"size\": \"$size\", \"date\": \"$date\"}," >> files.json
-            fi
-          done
-          # Arreglar la última coma para que el JSON sea válido
-          sed -i '$ s/,$//' files.json
-          echo "]" >> files.json
+              
+              if [ -d "$f" ]; then
+                echo "{\"name\": \"$name\", \"type\": \"directory\", \"date\": \"$date\", \"size\": \"-\"}," >> "$dir/files.json"
+                index_dir "$f" 
+              elif [ -f "$f" ]; then
+                size=$(du -h "$f" | cut -f1)
+                echo "{\"name\": \"$name\", \"type\": \"file\", \"date\": \"$date\", \"size\": \"$size\"}," >> "$dir/files.json"
+              fi
+            done
+            sed -i '$ s/,$//' "$dir/files.json"
+            echo "]" >> "$dir/files.json"
+          }
+
+          index_dir "public/download"
 
       - name: Commit and Push
         run: |
           git config --global user.name "Katifetch Bot"
           git config --global user.email "bot@katifetch.pages.dev"
-          git add public/files.json
-          git commit -m "auto: update download index" || exit 0
+          git add public/download/**/files.json
+          git commit -m "auto: update recursive download index" || exit 0
           git push
