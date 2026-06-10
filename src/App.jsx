@@ -115,7 +115,7 @@ export default function App() {
                 exit={{ opacity: 0, y: -10 }}
                 className="space-y-12 py-6"
               >
-                <div className="text-center max-w-2xl mx-auto">
+                <div className="text-center max-w-2xl mx-auto px-4">
                   <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
                     Support <span className="text-[#00ff41]">Katifetch</span>
                   </h2>
@@ -124,7 +124,7 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
                   {/* Código */}
                   <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300 flex flex-col justify-between">
                     <div>
@@ -175,29 +175,44 @@ export default function App() {
             ) : (
               
               /* =================================================== */
-              /* SESIÓN ORIGINAL: HOME LANDING                       */
+              /* SESIÓN ORIGINAL: HOME LANDING (MOBILE RESPONSIVE)   */
               /* =================================================== */
               <motion.div key="landing-session" exit={{ opacity: 0 }}>
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                  <div className="space-y-6 text-center md:text-left order-2 md:order-1">
-                    <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
+                {/* Cambiado de grid-cols-1 directo a flex-col en móviles y md:grid en escritorio */}
+                <section className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-10 items-center px-2">
+                  
+                  {/* Contenedor de Imagen: Primero en móvil (order-1) para que no rompa el flujo */}
+                  <div className="w-full flex justify-center order-1 md:order-2">
+                    <img 
+                      src={import.meta.env.BASE_URL + "infokati.png"}  
+                      alt="Katifetch info" 
+                      className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-full h-auto rounded-xl border border-white/10 shadow-2xl"
+                    />
+                  </div>
+
+                  {/* Contenedor de Texto: Centrado en móviles, alineado a la izquierda en monitores (order-2) */}
+                  <div className="space-y-4 md:space-y-6 text-center md:text-left order-2 md:order-1 w-full max-w-md md:max-w-none mx-auto">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
                       Katifetch — system info with <span className="text-[#00ff41] drop-shadow-[0_0_8px_rgba(0,255,65,0.4)]">style</span>
                     </h2>
-                    <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto md:mx-0">
+                    <p className="text-slate-400 text-xs sm:text-sm md:text-base px-2 sm:px-0">
                       Lightweight, cross-platform, and fully customizable. Works on
                       Linux, macOS, Windows, Termux, and more.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                    {/* Botones: Se apilan verticalmente en pantallas muy pequeñas, horizontales a partir de sm */}
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start px-4 sm:px-0">
                       <button
                         onClick={() => setShowInfo(!showInfo)}
-                        className="px-6 py-3 rounded-xl bg-green-600 text-white font-bold shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:bg-green-500 transition"
+                        className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-green-600 text-white text-sm font-bold shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:bg-green-500 transition"
                       >
                         Learn More
                       </button>
                       <a
                         href="https://github.com/ximimoments/katifetch"
-                        className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition font-mono text-sm"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition font-mono text-center text-xs sm:text-sm text-slate-300"
                       >
                         More Details
                       </a>
@@ -207,23 +222,16 @@ export default function App() {
                       <motion.div 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
-                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-xs text-left text-slate-300 font-mono"
+                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-[11px] sm:text-xs text-left text-slate-300 font-mono break-words mx-4 sm:mx-0"
                       >
                         Katifetch is a lightweight terminal system info tool, inspired by Neofetch. It has been adapted for multiple platforms including Windows, macOS, ChromeOS, and Android (Termux).
                       </motion.div>
                     )}
                   </div>
-
-                  <div className="flex justify-center order-1 md:order-2">
-                    <img 
-                      src={import.meta.env.BASE_URL + "infokati.png"}  
-                      alt="Katifetch info" 
-                      className="max-w-[280px] sm:max-w-full h-auto rounded-xl border border-white/10 shadow-2xl"
-                    />
-                  </div>
                 </section>
 
-                <div className="mt-16 md:mt-24 space-y-16 md:space-y-24">
+                {/* Sub-componentes ordenados en cascada limpia */}
+                <div className="mt-14 md:mt-24 space-y-14 md:space-y-24">
                   <LogoRequest />
                   <InstallerCard />
                   <RiceGallery />
