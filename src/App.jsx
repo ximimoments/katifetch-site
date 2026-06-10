@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Heart, Home, FolderGit, Terminal, Layers, Monitor, Cpu, Globe, ArrowUpRight } from "lucide-react";
+// Cambié FolderGit por Folder para que se vea impecable
+import { Github, Heart, Home, Folder, Terminal, Layers, Monitor, Cpu, Globe, ArrowUpRight } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
 import LogoRequest from "./components/LogoRequest";
 import RiceGallery from "./components/RiceGallery";
@@ -9,14 +10,13 @@ import ApacheView from "./components/ApacheView";
 export default function App() {
   const [showInfo, setShowInfo] = useState(false);
   const [showApache, setShowApache] = useState(false);
-  const [currentTab, setCurrentTab] = useState("home"); // "home", "sponsors" o "repos"
+  const [currentTab, setCurrentTab] = useState("home"); 
 
   const navigateTo = (tab) => {
     setShowApache(false);
     setCurrentTab(tab);
   };
 
-  // Listado oficial de repositorios del ecosistema Katifetch
   const officialRepos = [
     { name: "katifetch", desc: "The main core repository. Lightweight, cross-platform system information tool written for general terminal emulators.", url: "https://github.com/ximimoments/katifetch", icon: <Terminal className="text-[#00ff41]" size={20} /> },
     { name: "Katifetch-on-Everything", desc: "Experimental build configurations and documentation on running Katifetch scripts on virtually every device.", url: "https://github.com/ximimoments/Katifetch-on-Everything", icon: <Layers className="text-purple-400" size={20} /> },
@@ -85,7 +85,8 @@ export default function App() {
                   : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <FolderGit size={14} /> <span className="hidden xs:inline">Repos</span>
+              {/* Cambiado a Folder para mejor legibilidad en image_80147a.png */}
+              <Folder size={14} /> <span className="hidden xs:inline">Repos</span>
             </button>
 
             <button
@@ -129,9 +130,6 @@ export default function App() {
               </motion.div>
             ) : currentTab === "repos" ? (
               
-              /* =================================================== */
-              /* SESIÓN TOTALMENTE NUEVA: REPOS (LINKS OFICIALES)    */
-              /* =================================================== */
               <motion.div
                 key="repos-session"
                 initial={{ opacity: 0, y: 10 }}
@@ -139,7 +137,6 @@ export default function App() {
                 exit={{ opacity: 0, y: -10 }}
                 className="space-y-12 py-6"
               >
-                {/* Cabecera idéntica a la sección Sponsors */}
                 <div className="text-center max-w-2xl mx-auto px-4">
                   <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
                     Katifetch <span className="text-[#00ff41]">repos</span>
@@ -149,7 +146,6 @@ export default function App() {
                   </p>
                 </div>
 
-                {/* Grid de repositorios */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto px-4">
                   {officialRepos.map((repo, idx) => (
                     <a
@@ -189,9 +185,6 @@ export default function App() {
 
             ) : currentTab === "sponsors" ? (
               
-              /* =================================================== */
-              /* SESIÓN ORIGINAL: SPONSORS                           */
-              /* =================================================== */
               <motion.div
                 key="sponsors-session"
                 initial={{ opacity: 0, y: 10 }}
@@ -255,9 +248,6 @@ export default function App() {
               </motion.div>
             ) : (
               
-              /* =================================================== */
-              /* SESIÓN ORIGINAL: HOME LANDING                       */
-              /* =================================================== */
               <motion.div key="landing-session" exit={{ opacity: 0 }}>
                 <section className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-10 items-center px-2">
                   <div className="w-full flex justify-center order-1 md:order-2">
