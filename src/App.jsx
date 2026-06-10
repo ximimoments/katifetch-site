@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Heart } from "lucide-react";
+import { Github, Heart, Home } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
 import LogoRequest from "./components/LogoRequest";
 import RiceGallery from "./components/RiceGallery";
@@ -9,12 +9,18 @@ import ApacheView from "./components/ApacheView";
 export default function App() {
   const [showInfo, setShowInfo] = useState(false);
   const [showApache, setShowApache] = useState(false);
+  const [currentTab, setCurrentTab] = useState("home"); // "home" o "sponsors"
+
+  const navigateTo = (tab) => {
+    setShowApache(false);
+    setCurrentTab(tab);
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-black text-slate-100 font-sans relative overflow-x-hidden scroll-smooth"
+      className="min-h-screen bg-black text-slate-100 font-sans relative overflow-x-hidden"
     >
       {/* MATRIX BACKGROUND LAYER */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-20">
@@ -30,32 +36,52 @@ export default function App() {
       <div className="relative z-10">
         {/* Header */}
         <header className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex items-center justify-between">
-          <div className="flex items-center gap-3 md:gap-4">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black border border-green-500 shadow-[0_0_15px_rgba(0,255,65,0.2)] flex items-center justify-center">
+          <div 
+            onClick={() => navigateTo("home")} 
+            className="flex items-center gap-3 md:gap-4 cursor-pointer group"
+          >
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black border border-green-500 shadow-[0_0_15px_rgba(0,255,65,0.2)] flex items-center justify-center group-hover:border-green-400 transition-all">
               <span className="font-mono text-lg font-bold text-[#00ff41]">K</span>
             </div>
             <div>
-              <h1 className="text-base md:text-lg font-bold">Katifetch</h1>
+              <h1 className="text-base md:text-lg font-bold group-hover:text-green-400 transition-colors">Katifetch</h1>
               <p className="text-[10px] md:text-xs text-green-500/60 font-mono italic">
                 [katidev@system ~]$ _
               </p>
             </div>
           </div>
 
+          {/* NAV BAR */}
           <nav className="flex items-center gap-2">
-            <a
-              href="#support"
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-green-500/5 border border-green-500/20 hover:bg-green-500/10 transition-all text-[#00ff41]"
+            <button
+              onClick={() => navigateTo("home")}
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all font-mono text-xs ${
+                currentTab === "home" && !showApache
+                  ? "bg-green-500/10 border-green-500 text-[#00ff41]" 
+                  : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
+              }`}
             >
-              <Heart size={16} /> <span className="text-xs font-mono">Support</span>
-            </a>
+              <Home size={14} /> <span>Home</span>
+            </button>
+
+            <button
+              onClick={() => navigateTo("sponsors")}
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all font-mono text-xs ${
+                currentTab === "sponsors" && !showApache
+                  ? "bg-green-500/10 border-green-500 text-[#00ff41]" 
+                  : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <Heart size={14} /> <span>Sponsors</span>
+            </button>
+
             <a
               href="https://github.com/ximimoments/katifetch"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-slate-300"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-slate-300"
             >
-              <Github size={16} /> <span className="text-xs hidden sm:inline font-mono">GitHub</span>
+              <Github size={14} /> <span className="text-xs hidden sm:inline font-mono">GitHub</span>
             </a>
           </nav>
         </header>
@@ -77,10 +103,82 @@ export default function App() {
                 </button>
                 <ApacheView />
               </motion.div>
+            ) : currentTab === "sponsors" ? (
+              
+              /* =================================================== */
+              /* SESIÓN TOTALMENTE NUEVA: SPONSORS (PÁGINA DEDICADA) */
+              /* =================================================== */
+              <motion.div
+                key="sponsors-session"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="space-y-12 py-6"
+              >
+                <div className="text-center max-w-2xl mx-auto">
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
+                    Support <span className="text-[#00ff41]">Katifetch</span>
+                  </h2>
+                  <p className="text-slate-400 text-sm leading-relaxed font-sans">
+                    Katifetch is community-driven software. True backing doesn't require corporate funds or financial models—collaboration, upstream packaging, and open-source contributions are what keep us moving forward.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                  {/* Código */}
+                  <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                      <div className="text-2xl mb-3">💻</div>
+                      <h3 className="text-base font-bold text-white mb-2 font-mono">Contribute Code</h3>
+                      <p className="text-slate-400 text-xs leading-relaxed font-sans">
+                        Help us improve! Fix formatting, patch system features, add missing device parameters, or submit pull requests straight to our codebase.
+                      </p>
+                    </div>
+                    <a 
+                      href="https://github.com/ximimoments/katifetch" 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="text-xs text-[#00ff41] hover:underline mt-4 inline-block font-mono"
+                    >
+                      Open Repository →
+                    </a>
+                  </div>
+
+                  {/* Empaquetado */}
+                  <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
+                    <div className="text-2xl mb-3">📦</div>
+                    <h3 className="text-base font-bold text-white mb-2 font-mono">Package It</h3>
+                    <p className="text-slate-400 text-xs leading-relaxed font-sans">
+                      Maintain repositories for upstream distributions? Help us expand our native binary support across more target managers and environments.
+                    </p>
+                  </div>
+
+                  {/* Compartir */}
+                  <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
+                    <div className="text-2xl mb-3">📸</div>
+                    <h3 className="text-base font-bold text-white mb-2 font-mono">Share Your Setup</h3>
+                    <p className="text-slate-400 text-xs leading-relaxed font-sans">
+                      Take a beautiful screenshot of your customized desktop layout running Katifetch inside your terminal emulator and share it over r/unixporn, Mastodon, or Discord logs.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="text-center pt-6">
+                  <button
+                    onClick={() => setCurrentTab("home")}
+                    className="text-xs font-mono text-slate-500 hover:text-green-400 transition-colors"
+                  >
+                    [ Go back to home page ]
+                  </button>
+                </div>
+              </motion.div>
             ) : (
-              <motion.div key="landing" exit={{ opacity: 0 }}>
+              
+              /* =================================================== */
+              /* SESIÓN ORIGINAL: HOME LANDING                       */
+              /* =================================================== */
+              <motion.div key="landing-session" exit={{ opacity: 0 }}>
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                  
                   <div className="space-y-6 text-center md:text-left order-2 md:order-1">
                     <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
                       Katifetch — system info with <span className="text-[#00ff41] drop-shadow-[0_0_8px_rgba(0,255,65,0.4)]">style</span>
@@ -128,54 +226,6 @@ export default function App() {
                 <div className="mt-16 md:mt-24 space-y-16 md:space-y-24">
                   <LogoRequest />
                   <InstallerCard />
-
-                  {/* 100% FREE SUPPORT SECTION */}
-                  <section id="support" className="pt-8 text-center scroll-mt-6">
-                    <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
-                      Support <span className="text-[#00ff41]">Katifetch</span>
-                    </h2>
-                    <p className="text-slate-400 max-w-xl mx-auto mb-8 text-xs md:text-sm font-sans">
-                      Katifetch is community-driven software. True backing doesn't require corporate funds—collaboration, packaging, and code contributions are what keep us moving forward!
-                    </p>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left max-w-5xl mx-auto">
-                      {/* Código */}
-                      <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
-                        <div className="text-xl mb-2">💻</div>
-                        <h3 className="text-sm font-bold text-white mb-1 font-mono">Contribute Code</h3>
-                        <p className="text-slate-400 text-[11px] leading-relaxed mb-3">
-                          Help us improve! Fix formatting, add device parameters, or submit pull requests directly to our codebase.
-                        </p>
-                        <a 
-                          href="https://github.com/ximimoments/katifetch" 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="text-[11px] text-[#00ff41] hover:underline"
-                        >
-                          Open Repository →
-                        </a>
-                      </div>
-
-                      {/* Empaquetado */}
-                      <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
-                        <div className="text-xl mb-2">📦</div>
-                        <h3 className="text-sm font-bold text-white mb-1 font-mono">Package It</h3>
-                        <p className="text-slate-400 text-[11px] leading-relaxed">
-                          Maintain packages for distributions or handle system repositories? Help us bring Katifetch native binaries to more downstream targets.
-                        </p>
-                      </div>
-
-                      {/* Compartir */}
-                      <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
-                        <div className="text-xl mb-2">📸</div>
-                        <h3 className="text-sm font-bold text-white mb-1 font-mono">Share Your Setup</h3>
-                        <p className="text-slate-400 text-[11px] leading-relaxed">
-                          Take a nice screenshot of your desktop customized setup running Katifetch and share it on communities like r/unixporn or Discord.
-                        </p>
-                      </div>
-                    </div>
-                  </section>
-
                   <RiceGallery />
                 </div>
               </motion.div>
