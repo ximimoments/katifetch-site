@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// Cambié FolderGit por Folder para que se vea impecable
 import { Github, Heart, Home, Folder, Terminal, Layers, Monitor, Cpu, Globe, ArrowUpRight } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
 import LogoRequest from "./components/LogoRequest";
@@ -10,12 +9,41 @@ import ApacheView from "./components/ApacheView";
 export default function App() {
   const [showInfo, setShowInfo] = useState(false);
   const [showApache, setShowApache] = useState(false);
-  const [currentTab, setCurrentTab] = useState("home"); 
+  
+  const [currentTab, setCurrentTab] = useState(() => {
+    const path = window.location.pathname;
+    if (path === "/reposofficial") return "repos";
+    if (path === "/sponsor") return "sponsors";
+    return "home";
+  });
 
   const navigateTo = (tab) => {
     setShowApache(false);
     setCurrentTab(tab);
+    
+    let targetPath = "/";
+    if (tab === "repos") targetPath = "/reposofficial";
+    if (tab === "sponsors") targetPath = "/sponsor";
+    
+    window.history.pushState({ tab }, "", targetPath);
   };
+
+  useEffect(() => {
+    const handlePopState = (event) => {
+      setShowApache(false);
+      if (event.state && event.state.tab) {
+        setCurrentTab(event.state.tab);
+      } else {
+        const path = window.location.pathname;
+        if (path === "/reposofficial") setCurrentTab("repos");
+        else if (path === "/sponsor") setCurrentTab("sponsors");
+        else setCurrentTab("home");
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   const officialRepos = [
     { name: "katifetch", desc: "The main core repository. Lightweight, cross-platform system information tool written for general terminal emulators.", url: "https://github.com/ximimoments/katifetch", icon: <Terminal className="text-[#00ff41]" size={20} /> },
@@ -33,28 +61,31 @@ export default function App() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-black text-slate-100 font-sans relative overflow-x-hidden"
+      className="min-h-screen w-full bg-black text-slate-100 font-sans relative overflow-x-hidden"
     >
-      {/* MATRIX BACKGROUND LAYER */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-20">
+      <div className="fixed inset-0 pointer-events-none z-0 w-full h-full bg-black">
         <div 
-          className="absolute inset-0" 
+          className="absolute inset-0 opacity-25 w-full h-full" 
           style={{ 
-            backgroundImage: `linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px)`, 
-            backgroundSize: '35px 35px' 
+            background: "radial-gradient(circle at 50% 0%, rgba(0, 255, 65, 0.12) 0%, transparent 70%)" 
           }}
         ></div>
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-10 w-full">
         {/* Header */}
-        <header className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex items-center justify-between">
+        <header className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div 
             onClick={() => navigateTo("home")} 
             className="flex items-center gap-3 md:gap-4 cursor-pointer group"
           >
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black border border-green-500 shadow-[0_0_15px_rgba(0,255,65,0.2)] flex items-center justify-center group-hover:border-green-400 transition-all">
-              <span className="font-mono text-lg font-bold text-[#00ff41]">K</span>
+            {/* Contenedor del Logo con la imagen oficial de katifetchlogo.png */}
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black border border-green-500 shadow-[0_0_15px_rgba(0,255,65,0.2)] flex items-center justify-center group-hover:border-green-400 transition-all overflow-hidden p-1">
+              <img 
+                src="https://raw.githubusercontent.com/ximimoments/katifetch/refs/heads/main/media/katifetchlogo.png" 
+                alt="Katifetch Logo" 
+                className="w-full h-full object-contain object-center"
+              />
             </div>
             <div>
               <h1 className="text-base md:text-lg font-bold group-hover:text-green-400 transition-colors">Katifetch</h1>
@@ -65,48 +96,47 @@ export default function App() {
           </div>
 
           {/* NAV BAR */}
-          <nav className="flex items-center gap-1.5 sm:gap-2">
+          <nav className="flex items-center flex-wrap justify-center gap-2">
             <button
               onClick={() => navigateTo("home")}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border transition-all font-mono text-xs ${
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all font-mono text-xs ${
                 currentTab === "home" && !showApache
                   ? "bg-green-500/10 border-green-500 text-[#00ff41]" 
                   : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <Home size={14} /> <span className="hidden xs:inline">Home</span>
+              <Home size={14} /> <span>Home</span>
             </button>
 
             <button
               onClick={() => navigateTo("repos")}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border transition-all font-mono text-xs ${
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all font-mono text-xs ${
                 currentTab === "repos" && !showApache
                   ? "bg-green-500/10 border-green-500 text-[#00ff41]" 
                   : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
               }`}
             >
-              {/* Cambiado a Folder para mejor legibilidad en image_80147a.png */}
-              <Folder size={14} /> <span className="hidden xs:inline">Repos</span>
+              <Folder size={14} /> <span>Repos</span>
             </button>
 
             <button
               onClick={() => navigateTo("sponsors")}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border transition-all font-mono text-xs ${
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all font-mono text-xs ${
                 currentTab === "sponsors" && !showApache
                   ? "bg-green-500/10 border-green-500 text-[#00ff41]" 
                   : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <Heart size={14} /> <span className="hidden xs:inline">Sponsors</span>
+              <Heart size={14} /> <span>Sponsors</span>
             </button>
 
             <a
               href="https://github.com/ximimoments/katifetch"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-slate-300"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-slate-300"
             >
-              <Github size={14} /> <span className="text-xs hidden sm:inline font-mono">GitHub</span>
+              <Github size={14} /> <span className="text-xs font-mono">GitHub</span>
             </a>
           </nav>
         </header>
@@ -121,7 +151,7 @@ export default function App() {
                 exit={{ opacity: 0, y: -10 }}
               >
                 <button 
-                  onClick={() => setShowApache(false)}
+                  onClick={() => navigateTo("home")}
                   className="mb-6 text-xs font-mono text-green-500 hover:text-white border border-green-500/30 px-3 py-1 rounded-md"
                 >
                   [ ↩ BACK TO HOME ]
@@ -130,6 +160,7 @@ export default function App() {
               </motion.div>
             ) : currentTab === "repos" ? (
               
+              /* SECCIÓN: REPOS */
               <motion.div
                 key="repos-session"
                 initial={{ opacity: 0, y: 10 }}
@@ -175,7 +206,7 @@ export default function App() {
 
                 <div className="text-center pt-6">
                   <button
-                    onClick={() => setCurrentTab("home")}
+                    onClick={() => navigateTo("home")}
                     className="text-xs font-mono text-slate-500 hover:text-green-400 transition-colors"
                   >
                     [ Go back to home page ]
@@ -185,6 +216,7 @@ export default function App() {
 
             ) : currentTab === "sponsors" ? (
               
+              /* SECCIÓN: SPONSORS */
               <motion.div
                 key="sponsors-session"
                 initial={{ opacity: 0, y: 10 }}
@@ -239,7 +271,7 @@ export default function App() {
 
                 <div className="text-center pt-6">
                   <button
-                    onClick={() => setCurrentTab("home")}
+                    onClick={() => navigateTo("home")}
                     className="text-xs font-mono text-slate-500 hover:text-green-400 transition-colors"
                   >
                     [ Go back to home page ]
@@ -248,6 +280,7 @@ export default function App() {
               </motion.div>
             ) : (
               
+              /* SECCIÓN: HOME LANDING */
               <motion.div key="landing-session" exit={{ opacity: 0 }}>
                 <section className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-10 items-center px-2">
                   <div className="w-full flex justify-center order-1 md:order-2">
