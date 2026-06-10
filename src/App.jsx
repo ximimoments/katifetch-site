@@ -63,11 +63,25 @@ export default function App() {
       animate={{ opacity: 1 }}
       className="min-h-screen w-full bg-black text-slate-100 font-sans relative overflow-x-hidden"
     >
+      {/* CAPA DE FONDO HACKER: CUADRÍCULA DIGITAL Y RADIAL GLOW INTEGRADOS */}
       <div className="fixed inset-0 pointer-events-none z-0 w-full h-full bg-black">
+        {/* Líneas horizontales y verticales tipo grilla retro/cyberpunk */}
         <div 
-          className="absolute inset-0 opacity-25 w-full h-full" 
+          className="absolute inset-0 opacity-[0.07] w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, #00ff41 1px, transparent 1px),
+              linear-gradient(to bottom, #00ff41 1px, transparent 1px)
+            `,
+            backgroundSize: "40px 40px"
+          }}
+        ></div>
+        
+        {/* Resplandor verde de la terminal en el centro superior */}
+        <div 
+          className="absolute inset-0 opacity-20 w-full h-full" 
           style={{ 
-            background: "radial-gradient(circle at 50% 0%, rgba(0, 255, 65, 0.12) 0%, transparent 70%)" 
+            background: "radial-gradient(circle at 50% 0%, rgba(0, 255, 65, 0.15) 0%, transparent 75%)" 
           }}
         ></div>
       </div>
@@ -79,7 +93,6 @@ export default function App() {
             onClick={() => navigateTo("home")} 
             className="flex items-center gap-3 md:gap-4 cursor-pointer group"
           >
-            {/* Contenedor del Logo con la imagen oficial de katifetchlogo.png */}
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black border border-green-500 shadow-[0_0_15px_rgba(0,255,65,0.2)] flex items-center justify-center group-hover:border-green-400 transition-all overflow-hidden p-1">
               <img 
                 src="https://raw.githubusercontent.com/ximimoments/katifetch/refs/heads/main/media/katifetchlogo.png" 
@@ -184,7 +197,7 @@ export default function App() {
                       href={repo.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="group p-5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-green-500/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl"
+                      className="group p-5 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl"
                     >
                       <div className="space-y-2">
                         <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-green-500/20 transition-colors">
@@ -234,7 +247,7 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
-                  <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300 flex flex-col justify-between">
+                  <div className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 transition-all duration-300 flex flex-col justify-between">
                     <div>
                       <div className="text-2xl mb-3">💻</div>
                       <h3 className="text-base font-bold text-white mb-2 font-mono">Contribute Code</h3>
@@ -252,7 +265,7 @@ export default function App() {
                     </a>
                   </div>
 
-                  <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
+                  <div className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 transition-all duration-300">
                     <div className="text-2xl mb-3">📦</div>
                     <h3 className="text-base font-bold text-white mb-2 font-mono">Package It</h3>
                     <p className="text-slate-400 text-xs leading-relaxed font-sans">
@@ -260,7 +273,7 @@ export default function App() {
                     </p>
                   </div>
 
-                  <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
+                  <div className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 transition-all duration-300">
                     <div className="text-2xl mb-3">📸</div>
                     <h3 className="text-base font-bold text-white mb-2 font-mono">Share Your Setup</h3>
                     <p className="text-slate-400 text-xs leading-relaxed font-sans">
