@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Heart, Home } from "lucide-react";
+import { Github, Heart, Home, FolderGit, Terminal, Layers, Monitor, Cpu, Globe, ArrowUpRight } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
 import LogoRequest from "./components/LogoRequest";
 import RiceGallery from "./components/RiceGallery";
@@ -9,12 +9,25 @@ import ApacheView from "./components/ApacheView";
 export default function App() {
   const [showInfo, setShowInfo] = useState(false);
   const [showApache, setShowApache] = useState(false);
-  const [currentTab, setCurrentTab] = useState("home"); // "home" o "sponsors"
+  const [currentTab, setCurrentTab] = useState("home"); // "home", "sponsors" o "repos"
 
   const navigateTo = (tab) => {
     setShowApache(false);
     setCurrentTab(tab);
   };
+
+  // Listado oficial de repositorios del ecosistema Katifetch
+  const officialRepos = [
+    { name: "katifetch", desc: "The main core repository. Lightweight, cross-platform system information tool written for general terminal emulators.", url: "https://github.com/ximimoments/katifetch", icon: <Terminal className="text-[#00ff41]" size={20} /> },
+    { name: "Katifetch-on-Everything", desc: "Experimental build configurations and documentation on running Katifetch scripts on virtually every device.", url: "https://github.com/ximimoments/Katifetch-on-Everything", icon: <Layers className="text-purple-400" size={20} /> },
+    { name: "KatifetchOS", desc: "An independent custom ecosystem deployment. System architecture files and configuration sets.", url: "https://github.com/ximimoments/KatifetchOS", icon: <Cpu className="text-blue-400" size={20} /> },
+    { name: "Katifetch-Web", desc: "The official implementation running environment tailored for static cloud clients and modern web preview modules.", url: "https://ximimoments.github.io/Katifetch-Web/", icon: <Globe className="text-cyan-400" size={20} /> },
+    { name: "katifetch-for-android-shell-Magisk-Module", desc: "System-less flashable utility zip module optimized for rooted Android environments running Magisk environment chains.", url: "https://github.com/ximimoments/katifetch-for-android-shell-Magisk-Module", icon: <Terminal className="text-green-400" size={20} /> },
+    { name: "katifetchscreenshots", desc: "Official data hub containing target logs, user-contributed configuration dots, asset files, and desktop layouts.", url: "https://github.com/ximimoments/katifetchscreenshots", icon: <Monitor className="text-amber-400" size={20} /> },
+    { name: "Katifetch-turbowarp", desc: "Visual blocks compilation and graphic code interfaces optimized for TurboWarp compilers and engine setups.", url: "https://github.com/ximimoments/Katifetch-turbowarp", icon: <Layers className="text-orange-400" size={20} /> },
+    { name: "katifetch-tizen", desc: "Ported configuration profiles and testing layers built specifically for microcomputer spaces and Tizen OS engines.", url: "https://github.com/ximimoments/katifetch-tizen", icon: <Cpu className="text-pink-400" size={20} /> },
+    { name: "katifetch-for-unreleased-editions", desc: "Development staging branch. Holds experimental architecture, unstable features, and pre-release code segments.", url: "https://github.com/ximimoments/katifetch-for-unreleased-editions", icon: <Terminal className="text-red-400" size={20} /> }
+  ];
 
   return (
     <motion.div
@@ -52,34 +65,45 @@ export default function App() {
           </div>
 
           {/* NAV BAR */}
-          <nav className="flex items-center gap-2">
+          <nav className="flex items-center gap-1.5 sm:gap-2">
             <button
               onClick={() => navigateTo("home")}
-              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all font-mono text-xs ${
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border transition-all font-mono text-xs ${
                 currentTab === "home" && !showApache
                   ? "bg-green-500/10 border-green-500 text-[#00ff41]" 
                   : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <Home size={14} /> <span>Home</span>
+              <Home size={14} /> <span className="hidden xs:inline">Home</span>
+            </button>
+
+            <button
+              onClick={() => navigateTo("repos")}
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border transition-all font-mono text-xs ${
+                currentTab === "repos" && !showApache
+                  ? "bg-green-500/10 border-green-500 text-[#00ff41]" 
+                  : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <FolderGit size={14} /> <span className="hidden xs:inline">Repos</span>
             </button>
 
             <button
               onClick={() => navigateTo("sponsors")}
-              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all font-mono text-xs ${
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border transition-all font-mono text-xs ${
                 currentTab === "sponsors" && !showApache
                   ? "bg-green-500/10 border-green-500 text-[#00ff41]" 
                   : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
               }`}
             >
-              <Heart size={14} /> <span>Sponsors</span>
+              <Heart size={14} /> <span className="hidden xs:inline">Sponsors</span>
             </button>
 
             <a
               href="https://github.com/ximimoments/katifetch"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-slate-300"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-slate-300"
             >
               <Github size={14} /> <span className="text-xs hidden sm:inline font-mono">GitHub</span>
             </a>
@@ -103,10 +127,70 @@ export default function App() {
                 </button>
                 <ApacheView />
               </motion.div>
+            ) : currentTab === "repos" ? (
+              
+              /* =================================================== */
+              /* SESIÓN TOTALMENTE NUEVA: REPOS (LINKS OFICIALES)    */
+              /* =================================================== */
+              <motion.div
+                key="repos-session"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="space-y-12 py-6"
+              >
+                {/* Cabecera idéntica a la sección Sponsors */}
+                <div className="text-center max-w-2xl mx-auto px-4">
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
+                    Katifetch <span className="text-[#00ff41]">repos</span>
+                  </h2>
+                  <p className="text-slate-400 text-sm leading-relaxed font-sans">
+                    Explore all targeted build layers, custom firmware modifications, module setups, and deployment trees within the official Katifetch network.
+                  </p>
+                </div>
+
+                {/* Grid de repositorios */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto px-4">
+                  {officialRepos.map((repo, idx) => (
+                    <a
+                      key={idx}
+                      href={repo.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group p-5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-green-500/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl"
+                    >
+                      <div className="space-y-2">
+                        <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-green-500/20 transition-colors">
+                          {repo.icon}
+                        </div>
+                        <h3 className="text-sm font-bold text-slate-100 font-mono break-all group-hover:text-[#00ff41] transition-colors">
+                          {repo.name}
+                        </h3>
+                        <p className="text-slate-400 text-xs font-sans leading-relaxed line-clamp-3">
+                          {repo.desc}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 text-[11px] font-mono text-slate-500 group-hover:text-green-400 transition-colors pt-2 border-t border-white/[0.03]">
+                        <span>Access Resource</span> <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+
+                <div className="text-center pt-6">
+                  <button
+                    onClick={() => setCurrentTab("home")}
+                    className="text-xs font-mono text-slate-500 hover:text-green-400 transition-colors"
+                  >
+                    [ Go back to home page ]
+                  </button>
+                </div>
+              </motion.div>
+
             ) : currentTab === "sponsors" ? (
               
               /* =================================================== */
-              /* SESIÓN TOTALMENTE NUEVA: SPONSORS (PÁGINA DEDICADA) */
+              /* SESIÓN ORIGINAL: SPONSORS                           */
               /* =================================================== */
               <motion.div
                 key="sponsors-session"
@@ -125,7 +209,6 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
-                  {/* Código */}
                   <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300 flex flex-col justify-between">
                     <div>
                       <div className="text-2xl mb-3">💻</div>
@@ -144,7 +227,6 @@ export default function App() {
                     </a>
                   </div>
 
-                  {/* Empaquetado */}
                   <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
                     <div className="text-2xl mb-3">📦</div>
                     <h3 className="text-base font-bold text-white mb-2 font-mono">Package It</h3>
@@ -153,7 +235,6 @@ export default function App() {
                     </p>
                   </div>
 
-                  {/* Compartir */}
                   <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
                     <div className="text-2xl mb-3">📸</div>
                     <h3 className="text-base font-bold text-white mb-2 font-mono">Share Your Setup</h3>
@@ -175,13 +256,10 @@ export default function App() {
             ) : (
               
               /* =================================================== */
-              /* SESIÓN ORIGINAL: HOME LANDING (MOBILE RESPONSIVE)   */
+              /* SESIÓN ORIGINAL: HOME LANDING                       */
               /* =================================================== */
               <motion.div key="landing-session" exit={{ opacity: 0 }}>
-                {/* Cambiado de grid-cols-1 directo a flex-col en móviles y md:grid en escritorio */}
                 <section className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-10 items-center px-2">
-                  
-                  {/* Contenedor de Imagen: Primero en móvil (order-1) para que no rompa el flujo */}
                   <div className="w-full flex justify-center order-1 md:order-2">
                     <img 
                       src={import.meta.env.BASE_URL + "infokati.png"}  
@@ -190,7 +268,6 @@ export default function App() {
                     />
                   </div>
 
-                  {/* Contenedor de Texto: Centrado en móviles, alineado a la izquierda en monitores (order-2) */}
                   <div className="space-y-4 md:space-y-6 text-center md:text-left order-2 md:order-1 w-full max-w-md md:max-w-none mx-auto">
                     <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
                       Katifetch — system info with <span className="text-[#00ff41] drop-shadow-[0_0_8px_rgba(0,255,65,0.4)]">style</span>
@@ -200,7 +277,6 @@ export default function App() {
                       Linux, macOS, Windows, Termux, and more.
                     </p>
 
-                    {/* Botones: Se apilan verticalmente en pantallas muy pequeñas, horizontales a partir de sm */}
                     <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start px-4 sm:px-0">
                       <button
                         onClick={() => setShowInfo(!showInfo)}
@@ -230,7 +306,6 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* Sub-componentes ordenados en cascada limpia */}
                 <div className="mt-14 md:mt-24 space-y-14 md:space-y-24">
                   <LogoRequest />
                   <InstallerCard />
