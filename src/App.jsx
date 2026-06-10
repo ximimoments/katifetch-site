@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github } from "lucide-react";
+import { Github, Heart } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
 import LogoRequest from "./components/LogoRequest";
 import RiceGallery from "./components/RiceGallery";
@@ -14,7 +14,7 @@ export default function App() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-black text-slate-100 font-sans relative overflow-x-hidden"
+      className="min-h-screen bg-black text-slate-100 font-sans relative overflow-x-hidden scroll-smooth"
     >
       {/* MATRIX BACKGROUND LAYER */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-20">
@@ -42,12 +42,18 @@ export default function App() {
             </div>
           </div>
 
-          <nav>
+          <nav className="flex items-center gap-2">
+            <a
+              href="#support"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-green-500/5 border border-green-500/20 hover:bg-green-500/10 transition-all text-[#00ff41]"
+            >
+              <Heart size={16} /> <span className="text-xs font-mono">Support</span>
+            </a>
             <a
               href="https://github.com/ximimoments/katifetch"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-green-500/5 border border-green-500/20 hover:bg-green-500/10 transition-all text-[#00ff41]"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-slate-300"
             >
               <Github size={16} /> <span className="text-xs hidden sm:inline font-mono">GitHub</span>
             </a>
@@ -105,7 +111,6 @@ export default function App() {
                         animate={{ height: "auto", opacity: 1 }}
                         className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-xs text-left text-slate-300 font-mono"
                       >
-                        {/* FIXED: No more Spanish here */}
                         Katifetch is a lightweight terminal system info tool, inspired by Neofetch. It has been adapted for multiple platforms including Windows, macOS, ChromeOS, and Android (Termux).
                       </motion.div>
                     )}
@@ -123,6 +128,54 @@ export default function App() {
                 <div className="mt-16 md:mt-24 space-y-16 md:space-y-24">
                   <LogoRequest />
                   <InstallerCard />
+
+                  {/* 100% FREE SUPPORT SECTION */}
+                  <section id="support" className="pt-8 text-center scroll-mt-6">
+                    <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
+                      Support <span className="text-[#00ff41]">Katifetch</span>
+                    </h2>
+                    <p className="text-slate-400 max-w-xl mx-auto mb-8 text-xs md:text-sm font-sans">
+                      Katifetch is community-driven software. True backing doesn't require corporate funds—collaboration, packaging, and code contributions are what keep us moving forward!
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left max-w-5xl mx-auto">
+                      {/* Código */}
+                      <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
+                        <div className="text-xl mb-2">💻</div>
+                        <h3 className="text-sm font-bold text-white mb-1 font-mono">Contribute Code</h3>
+                        <p className="text-slate-400 text-[11px] leading-relaxed mb-3">
+                          Help us improve! Fix formatting, add device parameters, or submit pull requests directly to our codebase.
+                        </p>
+                        <a 
+                          href="https://github.com/ximimoments/katifetch" 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="text-[11px] text-[#00ff41] hover:underline"
+                        >
+                          Open Repository →
+                        </a>
+                      </div>
+
+                      {/* Empaquetado */}
+                      <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
+                        <div className="text-xl mb-2">📦</div>
+                        <h3 className="text-sm font-bold text-white mb-1 font-mono">Package It</h3>
+                        <p className="text-slate-400 text-[11px] leading-relaxed">
+                          Maintain packages for distributions or handle system repositories? Help us bring Katifetch native binaries to more downstream targets.
+                        </p>
+                      </div>
+
+                      {/* Compartir */}
+                      <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all duration-300">
+                        <div className="text-xl mb-2">📸</div>
+                        <h3 className="text-sm font-bold text-white mb-1 font-mono">Share Your Setup</h3>
+                        <p className="text-slate-400 text-[11px] leading-relaxed">
+                          Take a nice screenshot of your desktop customized setup running Katifetch and share it on communities like r/unixporn or Discord.
+                        </p>
+                      </div>
+                    </div>
+                  </section>
+
                   <RiceGallery />
                 </div>
               </motion.div>
