@@ -26,7 +26,19 @@
       </span>
     </div>
 
-    <form id="surveyForm" onsubmit="event.preventDefault();">
+    <!-- MENSAJE DE ÉXITO -->
+    <div id="successMessage" class="hidden text-center py-12 space-y-4">
+      <div class="text-[#00ff41] text-5xl">✓</div>
+      <h2 class="text-2xl font-bold text-white">Thank you!</h2>
+      <p class="text-slate-400 text-sm font-mono">Your response has been successfully submitted.</p>
+    </div>
+
+    <!-- FORMULARIO -->
+    <form id="surveyForm" action="https://api.web3forms.com/submit" method="POST">
+
+      <!-- Tu clave de Web3Forms integrada -->
+      <input type="hidden" name="access_key" value="a04c3705-1781-40be-af37-1d211f560c2a">
+      <input type="hidden" name="subject" value="New Katifetch Survey Response">
 
       <!-- STEP 1: MULTIPLE CHOICE (Checkboxes) -->
       <div id="step1" class="step-content space-y-6">
@@ -41,29 +53,28 @@
           </label>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-slate-300">
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" value="linux" class="accent-[#00ff41]">
+              <input type="checkbox" name="os[]" value="linux" class="accent-[#00ff41]">
               <span>Linux (Debian, Arch, Ubuntu, Fedora, etc.)</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" value="android" class="accent-[#00ff41]">
+              <input type="checkbox" name="os[]" value="android" class="accent-[#00ff41]">
               <span>Android (Termux / Root / Custom ROMs)</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" value="windows" class="accent-[#00ff41]">
+              <input type="checkbox" name="os[]" value="windows" class="accent-[#00ff41]">
               <span>Windows (PowerShell / WSL / Git Bash)</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" value="macos" class="accent-[#00ff41]">
+              <input type="checkbox" name="os[]" value="macos" class="accent-[#00ff41]">
               <span>macOS</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" value="bsd" class="accent-[#00ff41]">
+              <input type="checkbox" name="os[]" value="bsd" class="accent-[#00ff41]">
               <span>BSD (FreeBSD, OpenBSD, NetBSD)</span>
             </label>
 
-            <!-- Other option with dynamic input -->
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" id="checkOtherOS" value="other" class="accent-[#00ff41]" onchange="toggleOtherInput('checkOtherOS', 'otherOSContainer')">
+              <input type="checkbox" id="checkOtherOS" name="os[]" value="other" class="accent-[#00ff41]" onchange="toggleOtherInput('checkOtherOS', 'otherOSContainer')">
               <span>Other OS / Environment...</span>
             </label>
           </div>
@@ -71,6 +82,7 @@
           <div id="otherOSContainer" class="hidden mt-2">
             <input 
               type="text" 
+              name="other_os_details"
               placeholder="Specify other OS/environment (e.g., Haiku OS, BeOS)..." 
               class="w-full px-3 py-2 rounded-xl bg-black border border-white/20 text-xs text-slate-200 focus:outline-none focus:border-[#00ff41] font-mono"
             />
@@ -84,23 +96,23 @@
           </label>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-slate-300">
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" value="bash" class="accent-[#00ff41]">
+              <input type="checkbox" name="shell[]" value="bash" class="accent-[#00ff41]">
               <span>Bash</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" value="zsh" class="accent-[#00ff41]">
+              <input type="checkbox" name="shell[]" value="zsh" class="accent-[#00ff41]">
               <span>Zsh</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" value="fish" class="accent-[#00ff41]">
+              <input type="checkbox" name="shell[]" value="fish" class="accent-[#00ff41]">
               <span>Fish shell</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" value="powershell" class="accent-[#00ff41]">
+              <input type="checkbox" name="shell[]" value="powershell" class="accent-[#00ff41]">
               <span>PowerShell</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="checkbox" id="checkOtherShell" value="other" class="accent-[#00ff41]" onchange="toggleOtherInput('checkOtherShell', 'otherShellContainer')">
+              <input type="checkbox" id="checkOtherShell" name="shell[]" value="other" class="accent-[#00ff41]" onchange="toggleOtherInput('checkOtherShell', 'otherShellContainer')">
               <span>Other Shell...</span>
             </label>
           </div>
@@ -108,6 +120,7 @@
           <div id="otherShellContainer" class="hidden mt-2">
             <input 
               type="text" 
+              name="other_shell_details"
               placeholder="Specify shell (e.g., Nushell, Dash, Tcsh)..." 
               class="w-full px-3 py-2 rounded-xl bg-black border border-white/20 text-xs text-slate-200 focus:outline-none focus:border-[#00ff41] font-mono"
             />
@@ -204,6 +217,7 @@
             What features, missing ASCII logos, or enhancements would you like to see next?
           </label>
           <textarea 
+            name="feedback"
             rows="5" 
             placeholder="Type your feedback here..."
             class="w-full px-3 py-2 rounded-xl bg-black border border-white/20 text-xs text-slate-200 focus:outline-none focus:border-[#00ff41] font-mono resize-none"
@@ -211,7 +225,7 @@
         </div>
       </div>
 
-      <!-- STEP 4: CONTACT INFO (Email al final) -->
+      <!-- STEP 4: CONTACT INFO -->
       <div id="step4" class="step-content hidden space-y-4">
         <h2 class="text-sm font-mono text-[#00ff41] uppercase tracking-wider">
           4. Contact Information
@@ -232,7 +246,7 @@
       </div>
 
       <!-- BUTTONS NAVIGATION -->
-      <div class="mt-8 pt-4 border-t border-white/10 flex gap-3">
+      <div id="navigationButtons" class="mt-8 pt-4 border-t border-white/10 flex gap-3">
         <button 
           type="button" 
           id="prevBtn"
@@ -304,6 +318,42 @@
         container.classList.add('hidden');
       }
     }
+
+    // ENVÍO AJAX A WEB3FORMS (Evita la recarga de la página)
+    const form = document.getElementById('surveyForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      submitBtn.innerText = "Sending...";
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+          form.classList.add('hidden');
+          document.getElementById('stepIndicator').classList.add('hidden');
+          successMessage.classList.remove('hidden');
+        } else {
+          alert(json.message || "Error al enviar las respuestas.");
+          submitBtn.innerText = "[ Submit Response ]";
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(error => {
+        alert("Hubo un fallo de red al enviar el formulario.");
+        submitBtn.innerText = "[ Submit Response ]";
+        submitBtn.disabled = false;
+      });
+    });
   </script>
 
 </body>
