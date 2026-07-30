@@ -145,7 +145,7 @@ export default function App() {
 
             {/* BOTÓN SURVEY - Apuntando directamente al HTML alojado en public/survey/ */}
             <a
-              href="/survey/surveykatifetch.html"
+              href="/surveykatifetch.html"
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white transition-all text-slate-400 font-mono text-xs"
             >
               <Terminal size={14} /> <span>Survey</span>
