@@ -47,14 +47,14 @@ export default function App() {
 
   const officialRepos = [
     { name: "katifetch", desc: "The main core repository. Lightweight, cross-platform system information tool written for general terminal emulators.", url: "https://github.com/ximimoments/katifetch", icon: <Terminal className="text-[#00ff41]" size={20} /> },
-    { name: "Katifetch-on-Everything", desc: "Experimental build configurations and documentation on running Katifetch scripts on virtually every device.", url: "https://github.com/ximimoments/Katifetch-on-Everything", icon: <Layers className="text-purple-400" size={20} /> },
-    { name: "KatifetchOS", desc: "An independent custom ecosystem deployment. System architecture files and configuration sets.", url: "https://github.com/ximimoments/KatifetchOS", icon: <Cpu className="text-blue-400" size={20} /> },
-    { name: "Katifetch-Web", desc: "The official implementation running environment tailored for static cloud clients and modern web preview modules.", url: "https://ximimoments.github.io/Katifetch-Web/", icon: <Globe className="text-cyan-400" size={20} /> },
-    { name: "katifetch-for-android-shell-Magisk-Module", desc: "System-less flashable utility zip module optimized for rooted Android environments running Magisk environment chains.", url: "https://github.com/ximimoments/katifetch-for-android-shell-Magisk-Module", icon: <Terminal className="text-green-400" size={20} /> },
-    { name: "katifetchscreenshots", desc: "Official data hub containing target logs, user-contributed configuration dots, asset files, and desktop layouts.", url: "https://github.com/ximimoments/katifetchscreenshots", icon: <Monitor className="text-amber-400" size={20} /> },
-    { name: "Katifetch-turbowarp", desc: "Visual blocks compilation and graphic code interfaces optimized for TurboWarp compilers and engine setups.", url: "https://github.com/ximimoments/Katifetch-turbowarp", icon: <Layers className="text-orange-400" size={20} /> },
-    { name: "katifetch-tizen", desc: "Ported configuration profiles and testing layers built specifically for microcomputer spaces and Tizen OS engines.", url: "https://github.com/ximimoments/katifetch-tizen", icon: <Cpu className="text-pink-400" size={20} /> },
-    { name: "katifetch-for-unreleased-editions", desc: "Development staging branch. Holds experimental architecture, unstable features, and pre-release code segments.", url: "https://github.com/ximimoments/katifetch-for-unreleased-editions", icon: <Terminal className="text-red-400" size={20} /> }
+    { name: "Katifetch-on-Everything", desc: "Experimental build configurations and documentation on running Katifetch scripts on virtually every device.", url: "https://github.com/ximimoments/Katifetch-on-Everything", icon: <Layers className="text-[#00ff41]" size={20} /> },
+    { name: "KatifetchOS", desc: "An independent custom ecosystem deployment. System architecture files and configuration sets.", url: "https://github.com/ximimoments/KatifetchOS", icon: <Cpu className="text-[#00ff41]" size={20} /> },
+    { name: "Katifetch-Web", desc: "The official implementation running environment tailored for static cloud clients and modern web preview modules.", url: "https://ximimoments.github.io/Katifetch-Web/", icon: <Globe className="text-[#00ff41]" size={20} /> },
+    { name: "katifetch-for-android-shell-Magisk-Module", desc: "System-less flashable utility zip module optimized for rooted Android environments running Magisk environment chains.", url: "https://github.com/ximimoments/katifetch-for-android-shell-Magisk-Module", icon: <Terminal className="text-[#00ff41]" size={20} /> },
+    { name: "katifetchscreenshots", desc: "Official data hub containing target logs, user-contributed configuration dots, asset files, and desktop layouts.", url: "https://github.com/ximimoments/katifetchscreenshots", icon: <Monitor className="text-[#00ff41]" size={20} /> },
+    { name: "Katifetch-turbowarp", desc: "Visual blocks compilation and graphic code interfaces optimized for TurboWarp compilers and engine setups.", url: "https://github.com/ximimoments/Katifetch-turbowarp", icon: <Layers className="text-[#00ff41]" size={20} /> },
+    { name: "katifetch-tizen", desc: "Ported configuration profiles and testing layers built specifically for microcomputer spaces and Tizen OS engines.", url: "https://github.com/ximimoments/katifetch-tizen", icon: <Cpu className="text-[#00ff41]" size={20} /> },
+    { name: "katifetch-for-unreleased-editions", desc: "Development staging branch. Holds experimental architecture, unstable features, and pre-release code segments.", url: "https://github.com/ximimoments/katifetch-for-unreleased-editions", icon: <Terminal className="text-[#00ff41]" size={20} /> }
   ];
 
   return (
@@ -142,6 +142,14 @@ export default function App() {
             >
               <Heart size={14} /> <span>Sponsors</span>
             </button>
+
+            {/* BOTÓN SURVEY - Apuntando directamente al HTML alojado en public/survey/ */}
+            <a
+              href="/survey/surveykatifetch.html"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white transition-all text-slate-400 font-mono text-xs"
+            >
+              <Terminal size={14} /> <span>Survey</span>
+            </a>
 
             <a
               href="https://github.com/ximimoments/katifetch"
