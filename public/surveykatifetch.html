@@ -42,15 +42,15 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-slate-300">
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
               <input type="checkbox" value="linux" class="accent-[#00ff41]">
-              <span>Linux (Debian, Arch, Alpine, Gentoo, etc.)</span>
+              <span>Linux (Debian, Arch, Ubuntu, Fedora, etc.)</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
               <input type="checkbox" value="android" class="accent-[#00ff41]">
-              <span>Android (Termux / Root / Standalone App)</span>
+              <span>Android (Termux / Root / Custom ROMs)</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
               <input type="checkbox" value="windows" class="accent-[#00ff41]">
-              <span>Windows (PowerShell / WSL / CMD)</span>
+              <span>Windows (PowerShell / WSL / Git Bash)</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
               <input type="checkbox" value="macos" class="accent-[#00ff41]">
@@ -71,7 +71,7 @@
           <div id="otherOSContainer" class="hidden mt-2">
             <input 
               type="text" 
-              placeholder="Specify other OS/environment (e.g., Haiku OS, BeOS, Solaris)..." 
+              placeholder="Specify other OS/environment (e.g., Haiku OS, BeOS)..." 
               class="w-full px-3 py-2 rounded-xl bg-black border border-white/20 text-xs text-slate-200 focus:outline-none focus:border-[#00ff41] font-mono"
             />
           </div>
@@ -80,7 +80,7 @@
         <!-- Question 1.2 -->
         <div class="space-y-3">
           <label class="block text-sm font-medium text-slate-200">
-            Which command shells or terminal emulators do you primary use?
+            Which command shells or terminal environments do you primarily use?
           </label>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-slate-300">
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
@@ -89,7 +89,7 @@
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
               <input type="checkbox" value="zsh" class="accent-[#00ff41]">
-              <span>Zsh (Oh My Zsh)</span>
+              <span>Zsh</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
               <input type="checkbox" value="fish" class="accent-[#00ff41]">
@@ -108,7 +108,7 @@
           <div id="otherShellContainer" class="hidden mt-2">
             <input 
               type="text" 
-              placeholder="Specify shell (e.g. Nushell, Tcsh, Dash)..." 
+              placeholder="Specify shell (e.g., Nushell, Dash, Tcsh)..." 
               class="w-full px-3 py-2 rounded-xl bg-black border border-white/20 text-xs text-slate-200 focus:outline-none focus:border-[#00ff41] font-mono"
             />
           </div>
@@ -137,11 +137,11 @@
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
               <input type="radio" name="frequency" value="screenshots" class="accent-[#00ff41]">
-              <span>Only when sharing desktop screenshots (unixporn / dotfiles)</span>
+              <span>Only when taking screenshots (rice / dotfiles)</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
               <input type="radio" name="frequency" value="testing" class="accent-[#00ff41]">
-              <span>Just testing / checking system specs once in a while</span>
+              <span>Just testing or checking system info once in a while</span>
             </label>
           </div>
         </div>
@@ -149,7 +149,7 @@
         <!-- Question 2.2 -->
         <div class="space-y-3">
           <label class="block text-sm font-medium text-slate-200">
-            How would you rate the execution speed on your setup?
+            How would you rate the execution speed on your system?
           </label>
           <div class="space-y-2 text-xs font-mono text-slate-300">
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
@@ -162,7 +162,7 @@
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
               <input type="radio" name="performance" value="slow" class="accent-[#00ff41]">
-              <span>Slow (Noticeable lag when gathering information)</span>
+              <span>Slow (Noticeable lag when detecting specs)</span>
             </label>
           </div>
         </div>
@@ -170,20 +170,24 @@
         <!-- Question 2.3 -->
         <div class="space-y-3">
           <label class="block text-sm font-medium text-slate-200">
-            What is your primary installation method?
+            How did you install Katifetch on your machine?
           </label>
           <div class="space-y-2 text-xs font-mono text-slate-300">
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="radio" name="install_method" value="pkg" class="accent-[#00ff41]">
-              <span>Official Package Manager (e.g., Alpine APK, AUR, etc.)</span>
+              <input type="radio" name="install_method" value="repo" class="accent-[#00ff41]">
+              <span>From official system repositories / package manager</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="radio" name="install_method" value="curl" class="accent-[#00ff41]">
-              <span>Direct install script / Curl / Standalone Binary</span>
+              <input type="radio" name="install_method" value="sh_script" class="accent-[#00ff41]">
+              <span>Using the shell installer script (.sh)</span>
             </label>
             <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
-              <input type="radio" name="install_method" value="source" class="accent-[#00ff41]">
-              <span>Cloned Git Repository & Manual Build</span>
+              <input type="radio" name="install_method" value="git_cloned" class="accent-[#00ff41]">
+              <span>Cloning the source repository and running manually</span>
+            </label>
+            <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 cursor-pointer">
+              <input type="radio" name="install_method" value="manual_bin" class="accent-[#00ff41]">
+              <span>Manual copy of binary / script into system PATH</span>
             </label>
           </div>
         </div>
