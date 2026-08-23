@@ -3,15 +3,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react"; // Necesitas instalar lucide-react
 
 const screenshots = [
+  { title: "Adeile Linux", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Adeilelinux.jpg?raw=true" },
   { title: "Alpine Linux Edge", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/AlpineLinuxEdge.png?raw=true" },
   { title: "Alpine Linux On VNC", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/AlpineonVNC.png?raw=true" },
   { title: "Chimera Linux", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/ChimeraLinux.png?raw=true" },
   { title: "Debian 13 Testing", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Debian13Testing.png?raw=true" },
   { title: "Fedora 42 XFCE", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Fedora42XFCE.png?raw=true" },
   { title: "Haiku Beta 5", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/HaikuBeta5.png?raw=true" },
+  { title: "Linux Lite 8.0", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Linuxlite8.0.png?raw=true" },
   { title: "Linux Mint 22.2 & LMDE 6", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/LinuxMint22.2andLMDE7.png?raw=true" },
+  { title: "Mageia 9", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Mageia9.png?raw=true" },
+  { title: "Mageia 10", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Mageia10.png?raw=true" },
   { title: "OpenSuse Leap 15.6 (WSL)", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/OpenSuse15.6LeapWSL.PNG?raw=true" },
   { title: "OpenBSD 7.8", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Openbsd7.8.png?raw=true" },
+  { title: "PostmarketOS Edge", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/PostmarketOSEdge.png?raw=true" },
   { title: "Rocky Linux 9.7", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Rockylinux9.7.png?raw=true" },
   { title: "Ubuntu 22.04", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Ubuntu22.04.png?raw=true" },
   { title: "Ubuntu 24.04", url: "https://github.com/ximimoments/katifetchscreenshots/blob/main/formywebsite/Ubuntu24.04.png?raw=true" },
