@@ -1,0 +1,19 @@
+name: Generate Files Index
+on:
+  push:
+    branches: [main]
+    paths: ['public/files/**']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/generate-files.js
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "auto: update files index"
+          file_pattern: public/files/*
