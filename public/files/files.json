@@ -1,4 +1,4 @@
 [
-  "hi.txt",
-  "test.txt"
+{"name": "hi.txt", "type": "file", "date": "2026-09-11 23:24", "size": "4.0K"},
+{"name": "test.txt", "type": "file", "date": "2026-09-11 23:24", "size": "4.0K"}
 ]
