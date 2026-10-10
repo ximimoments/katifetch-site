@@ -359,9 +359,9 @@ export default function App() {
             )}
           </AnimatePresence>
           
-<footer className="mt-20 border-t border-white/5 pt-8 pb-12 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-slate-500">
+          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
             <div>
-              © 2025 - {new Date().getFullYear()} Katifetch — 
+              © {new Date().getFullYear()} Katifetch — 
               <button 
                 onClick={() => setShowApache(true)} 
                 className="ml-1 hover:text-green-500 transition-colors"
@@ -383,3 +383,8 @@ export default function App() {
               />
             </a>
           </footer>
+        </main>
+      </div>
+    </motion.div>
+  );
+}
