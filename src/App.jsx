@@ -359,17 +359,27 @@ export default function App() {
             )}
           </AnimatePresence>
           
-          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 text-center text-xs text-slate-500">
-            © {new Date().getFullYear()} Katifetch — 
-            <button 
-              onClick={() => setShowApache(true)} 
-              className="ml-1 hover:text-green-500 transition-colors"
+<footer className="mt-20 border-t border-white/5 pt-8 pb-12 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-slate-500">
+            <div>
+              © 2025 - {new Date().getFullYear()} Katifetch — 
+              <button 
+                onClick={() => setShowApache(true)} 
+                className="ml-1 hover:text-green-500 transition-colors"
+              >
+                Built by kati dev
+              </button>
+            </div>
+            
+            {/* Badge de Repology */}
+            <a 
+              href="https://repology.org/project/katifetch/versions"
+              target="_blank"
+              rel="noreferrer"
+              className="opacity-80 hover:opacity-100 transition-opacity"
             >
-              Built by kati dev
-            </button>
+              <img 
+                src="https://repology.org/badge/vertical-allrepos/katifetch.svg" 
+                alt="Packaging status" 
+              />
+            </a>
           </footer>
-        </main>
-      </div>
-    </motion.div>
-  );
-}
