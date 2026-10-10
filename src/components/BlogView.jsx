@@ -41,15 +41,20 @@ export default function BlogView() {
             key={idx}
             className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col space-y-4 shadow-xl group overflow-hidden"
           >
-            {/* Muestra la captura de pantalla solo si el post tiene definida la propiedad 'image' */}
+            {/* Imagen clickeable */}
             {post.image && (
-              <div className="w-full h-48 sm:h-64 rounded-lg overflow-hidden border border-white/10 bg-black/60">
+              <a 
+                href={post.url} 
+                target="_blank" 
+                rel="noreferrer"
+                className="w-full h-48 sm:h-64 rounded-lg overflow-hidden border border-white/10 bg-black/60 block cursor-pointer"
+              >
                 <img 
                   src={post.image} 
                   alt={post.title} 
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 />
-              </div>
+              </a>
             )}
 
             <div className="space-y-2">
