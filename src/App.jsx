@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Heart, Home, Folder, Terminal, Layers, Monitor, Cpu, Globe, ArrowUpRight } from "lucide-react";
+import { Github, Heart, Home, Folder, Terminal, Layers, Monitor, Cpu, Globe, ArrowUpRight, BookOpen } from "lucide-react";
 import InstallerCard from "./components/InstallerCard";
 import LogoRequest from "./components/LogoRequest";
 import RiceGallery from "./components/RiceGallery";
 import ApacheView from "./components/ApacheView";
+import BlogView from "./components/BlogView";
 
 export default function App() {
   const [showInfo, setShowInfo] = useState(false);
@@ -14,6 +15,7 @@ export default function App() {
     const path = window.location.pathname;
     if (path === "/reposofficial") return "repos";
     if (path === "/sponsor") return "sponsors";
+    if (path === "/blog") return "blog";
     return "home";
   });
 
@@ -24,6 +26,7 @@ export default function App() {
     let targetPath = "/";
     if (tab === "repos") targetPath = "/reposofficial";
     if (tab === "sponsors") targetPath = "/sponsor";
+    if (tab === "blog") targetPath = "/blog";
     
     window.history.pushState({ tab }, "", targetPath);
   };
@@ -37,6 +40,7 @@ export default function App() {
         const path = window.location.pathname;
         if (path === "/reposofficial") setCurrentTab("repos");
         else if (path === "/sponsor") setCurrentTab("sponsors");
+        else if (path === "/blog") setCurrentTab("blog");
         else setCurrentTab("home");
       }
     };
@@ -130,6 +134,17 @@ export default function App() {
               }`}
             >
               <Folder size={14} /> <span>Repos</span>
+            </button>
+
+            <button
+              onClick={() => navigateTo("blog")}
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all font-mono text-xs ${
+                currentTab === "blog" && !showApache
+                  ? "bg-green-500/10 border-green-500 text-[#00ff41]" 
+                  : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <BookOpen size={14} /> <span>Blog</span>
             </button>
 
             <button
@@ -234,6 +249,11 @@ export default function App() {
                   </button>
                 </div>
               </motion.div>
+
+            ) : currentTab === "blog" ? (
+              
+              /* SECCIÓN: BLOG */
+              <BlogView />
 
             ) : currentTab === "sponsors" ? (
               
