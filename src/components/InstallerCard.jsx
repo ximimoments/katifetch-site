@@ -4,21 +4,21 @@ import { motion } from "framer-motion";
 export default function InstallerCard() {
   return (
     <motion.div
-      className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 text-center text-white shadow-lg max-w-lg mx-auto"
+      className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-4 sm:p-8 text-center text-white shadow-lg w-full max-w-lg mx-auto box-border overflow-hidden"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <h2 className="text-3xl font-semibold mb-3">Download Katifetch</h2>
-      <p className="text-gray-200 mb-6">
+      <h2 className="text-2xl sm:text-3xl font-semibold mb-3">Download Katifetch</h2>
+      <p className="text-gray-200 mb-6 text-sm sm:text-base">
         Choose your preferred format to install Katifetch on your system.
       </p>
 
       {/* Download Buttons */}
-      <div className="flex flex-wrap justify-center gap-4 mb-6">
+      <div className="flex flex-wrap justify-center gap-3 mb-6 w-full">
         <a
           href="https://github.com/ximimoments/katifetch/releases/download/13.1/katifetch-13.1.deb"
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition px-4 py-2 rounded-lg font-medium"
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm"
         >
           <Download size={18} />
           <span>.deb (Ubuntu/Debian)</span>
@@ -26,7 +26,7 @@ export default function InstallerCard() {
 
         <a
           href="https://github.com/ximimoments/katifetch/releases/download/13.1/katifetch-13.1-2.fc43.noarch.rpm"
-          className="flex items-center gap-2 bg-green-600 hover:bg-green-700 transition px-4 py-2 rounded-lg font-medium"
+          className="flex items-center gap-2 bg-green-600 hover:bg-green-700 transition px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm"
         >
           <Download size={18} />
           <span>.rpm (Fedora/RHEL)</span>
@@ -34,7 +34,7 @@ export default function InstallerCard() {
 
         <a
           href="https://github.com/ximimoments/katifetch/releases/download/13.1/katifetch-13.1.tar.gz"
-          className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 transition px-4 py-2 rounded-lg font-medium"
+          className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 transition px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm"
         >
           <Download size={18} />
           <span>.tar.gz (Manual)</span>
@@ -42,14 +42,15 @@ export default function InstallerCard() {
       </div>
 
       {/* Installation Guide */}
-      <div className="text-left bg-slate-800/50 p-6 rounded-lg text-slate-200 mb-6">
-        <h3 className="text-2xl font-semibold mb-3">Installation Guide</h3>
-        <p className="mb-3">
+      <div className="text-left bg-slate-800/50 p-4 sm:p-6 rounded-lg text-slate-200 mb-6 w-full max-w-full overflow-hidden">
+        <h3 className="text-xl sm:text-2xl font-semibold mb-3">Installation Guide</h3>
+        <p className="mb-3 text-xs sm:text-sm">
           Follow these steps in your terminal to install Katifetch:
         </p>
 
-        <pre className="bg-slate-900/40 p-4 rounded-lg overflow-auto text-sm">
-{` # On Linux (Manual)
+        <div className="w-full overflow-x-auto">
+          <pre className="bg-slate-900/40 p-4 rounded-lg text-xs sm:text-sm font-mono whitespace-pre min-w-full">
+{`# On Linux (Manual)
 # 1. Clone the repository
 git clone https://github.com/ximimoments/katifetch.git && cd katifetch
 
@@ -72,10 +73,11 @@ sudo dnf copr enable ximios/katifetch
 sudo dnf copr enable ximios/katifetch
 
 # On Windows (With Chocolatey)
-choco install katifetch `}
-        </pre>
+choco install katifetch`}
+          </pre>
+        </div>
 
-        <p className="mt-3">
+        <p className="mt-3 text-xs sm:text-sm">
           That's it! Katifetch is now installed and ready to use.
         </p>
       </div>
