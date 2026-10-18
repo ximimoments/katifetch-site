@@ -158,7 +158,7 @@ export default function App() {
               <Heart size={14} /> <span>Sponsors</span>
             </button>
 
-            {/* BOTÓN SURVEY - Apuntando directamente al HTML alojado en public/survey/ */}
+            {/* BOTÓN SURVEY */}
             <a
               href="/surveykatifetch.html"
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white transition-all text-slate-400 font-mono text-xs"
@@ -177,7 +177,7 @@ export default function App() {
           </nav>
         </header>
 
-        <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
+        <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12 overflow-x-hidden">
           <AnimatePresence mode="wait">
             {showApache ? (
               <motion.div
@@ -322,26 +322,27 @@ export default function App() {
             ) : (
               
               /* SECCIÓN: HOME LANDING */
-              <motion.div key="landing-session" exit={{ opacity: 0 }}>
-                <section className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-10 items-center px-2">
-                  <div className="w-full flex justify-center order-1 md:order-2">
+              <motion.div key="landing-session" exit={{ opacity: 0 }} className="w-full">
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center w-full">
+                  {/* Contenedor de la imagen asegurando ancho responsivo sin romper escritorio */}
+                  <div className="w-full flex justify-center order-1 md:order-2 overflow-hidden px-2">
                     <img 
                       src={import.meta.env.BASE_URL + "infokati.png"}  
                       alt="Katifetch info" 
-                      className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-full h-auto rounded-xl border border-white/10 shadow-2xl"
+                      className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-full h-auto rounded-xl border border-white/10 shadow-2xl object-contain"
                     />
                   </div>
 
-                  <div className="space-y-4 md:space-y-6 text-center md:text-left order-2 md:order-1 w-full max-w-md md:max-w-none mx-auto">
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
+                  <div className="space-y-4 md:space-y-6 text-center md:text-left order-2 md:order-1 w-full mx-auto px-2">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white break-words">
                       Katifetch — system info with <span className="text-[#00ff41] drop-shadow-[0_0_8px_rgba(0,255,65,0.4)]">style</span>
                     </h2>
-                    <p className="text-slate-400 text-xs sm:text-sm md:text-base px-2 sm:px-0">
+                    <p className="text-slate-400 text-xs sm:text-sm md:text-base">
                       Lightweight, cross-platform, and fully customizable. Works on
                       Linux, macOS, Windows, Termux, and more.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start px-4 sm:px-0">
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start w-full">
                       <button
                         onClick={() => setShowInfo(!showInfo)}
                         className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-green-600 text-white text-sm font-bold shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:bg-green-500 transition"
@@ -362,7 +363,7 @@ export default function App() {
                       <motion.div 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
-                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-[11px] sm:text-xs text-left text-slate-300 font-mono break-words mx-4 sm:mx-0"
+                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-[11px] sm:text-xs text-left text-slate-300 font-mono break-words w-full"
                       >
                         Katifetch is a lightweight terminal system info tool, inspired by Neofetch. It has been adapted for multiple platforms including Windows, macOS, ChromeOS, and Android (Termux).
                       </motion.div>
@@ -370,7 +371,7 @@ export default function App() {
                   </div>
                 </section>
 
-                <div className="mt-14 md:mt-24 space-y-14 md:space-y-24">
+                <div className="mt-14 md:mt-24 space-y-14 md:space-y-24 w-full">
                   <LogoRequest />
                   <InstallerCard />
                   <RiceGallery />
@@ -379,7 +380,7 @@ export default function App() {
             )}
           </AnimatePresence>
           
-          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 w-full">
             <div>
               © {new Date().getFullYear()} Katifetch — 
               <button 
