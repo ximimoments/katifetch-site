@@ -68,7 +68,7 @@ export default function App() {
       className="min-h-screen w-full bg-black text-slate-100 font-sans relative overflow-x-hidden"
     >
       {/* CAPA DE FONDO HACKER: CUADRÍCULA DIGITAL Y RADIAL GLOW INTEGRADOS */}
-      <div className="fixed inset-0 pointer-events-none z-0 w-full h-full bg-black">
+      <div className="fixed inset-0 pointer-events-none z-0 w-full h-full bg-black overflow-hidden">
         {/* Líneas horizontales y verticales tipo grilla retro/cyberpunk */}
         <div 
           className="absolute inset-0 opacity-[0.07] w-full h-full"
@@ -90,14 +90,14 @@ export default function App() {
         ></div>
       </div>
 
-      <div className="relative z-10 w-full">
+      <div className="relative z-10 w-full max-w-full overflow-x-hidden">
         {/* Header */}
-        <header className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <header className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
           <div 
             onClick={() => navigateTo("home")} 
             className="flex items-center gap-3 md:gap-4 cursor-pointer group"
           >
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black border border-green-500 shadow-[0_0_15px_rgba(0,255,65,0.2)] flex items-center justify-center group-hover:border-green-400 transition-all overflow-hidden p-1">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black border border-green-500 shadow-[0_0_15px_rgba(0,255,65,0.2)] flex items-center justify-center group-hover:border-green-400 transition-all overflow-hidden p-1 shrink-0">
               <img 
                 src="https://raw.githubusercontent.com/ximimoments/katifetch/refs/heads/main/media/katifetchlogo.png" 
                 alt="Katifetch Logo" 
@@ -113,7 +113,7 @@ export default function App() {
           </div>
 
           {/* NAV BAR */}
-          <nav className="flex items-center flex-wrap justify-center gap-2">
+          <nav className="flex items-center flex-wrap justify-center gap-2 max-w-full">
             <button
               onClick={() => navigateTo("home")}
               className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all font-mono text-xs ${
@@ -177,7 +177,7 @@ export default function App() {
           </nav>
         </header>
 
-        <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
+        <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12 w-full overflow-hidden">
           <AnimatePresence mode="wait">
             {showApache ? (
               <motion.div
@@ -185,6 +185,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
+                className="w-full"
               >
                 <button 
                   onClick={() => navigateTo("home")}
@@ -202,7 +203,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="space-y-12 py-6"
+                className="space-y-12 py-6 w-full"
               >
                 <div className="text-center max-w-2xl mx-auto px-4">
                   <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
@@ -263,7 +264,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="space-y-12 py-6"
+                className="space-y-12 py-6 w-full"
               >
                 <div className="text-center max-w-2xl mx-auto px-4">
                   <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
@@ -322,18 +323,18 @@ export default function App() {
             ) : (
               
               /* SECCIÓN: HOME LANDING */
-              <motion.div key="landing-session" exit={{ opacity: 0 }}>
-                <section className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-10 items-center px-2">
+              <motion.div key="landing-session" exit={{ opacity: 0 }} className="w-full max-w-full">
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center w-full">
                   <div className="w-full flex justify-center order-1 md:order-2">
                     <img 
                       src={import.meta.env.BASE_URL + "infokati.png"}  
                       alt="Katifetch info" 
-                      className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-full h-auto rounded-xl border border-white/10 shadow-2xl"
+                      className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-full h-auto rounded-xl border border-white/10 shadow-2xl object-contain"
                     />
                   </div>
 
                   <div className="space-y-4 md:space-y-6 text-center md:text-left order-2 md:order-1 w-full max-w-md md:max-w-none mx-auto">
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white break-words">
                       Katifetch — system info with <span className="text-[#00ff41] drop-shadow-[0_0_8px_rgba(0,255,65,0.4)]">style</span>
                     </h2>
                     <p className="text-slate-400 text-xs sm:text-sm md:text-base px-2 sm:px-0">
@@ -341,7 +342,7 @@ export default function App() {
                       Linux, macOS, Windows, Termux, and more.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start px-4 sm:px-0">
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start px-2 sm:px-0">
                       <button
                         onClick={() => setShowInfo(!showInfo)}
                         className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-green-600 text-white text-sm font-bold shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:bg-green-500 transition"
@@ -362,7 +363,7 @@ export default function App() {
                       <motion.div 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
-                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-[11px] sm:text-xs text-left text-slate-300 font-mono break-words mx-4 sm:mx-0"
+                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-[11px] sm:text-xs text-left text-slate-300 font-mono break-words w-full"
                       >
                         Katifetch is a lightweight terminal system info tool, inspired by Neofetch. It has been adapted for multiple platforms including Windows, macOS, ChromeOS, and Android (Termux).
                       </motion.div>
@@ -370,7 +371,7 @@ export default function App() {
                   </div>
                 </section>
 
-                <div className="mt-14 md:mt-24 space-y-14 md:space-y-24">
+                <div className="mt-14 md:mt-24 space-y-14 md:space-y-24 w-full max-w-full overflow-hidden">
                   <LogoRequest />
                   <InstallerCard />
                   <RiceGallery />
@@ -379,7 +380,7 @@ export default function App() {
             )}
           </AnimatePresence>
           
-          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 w-full">
             <div>
               © {new Date().getFullYear()} Katifetch — 
               <button 
