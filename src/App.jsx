@@ -90,9 +90,9 @@ export default function App() {
         ></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-full overflow-x-hidden">
+      <div className="relative z-10 w-full max-w-full overflow-x-hidden box-border">
         {/* Header */}
-        <header className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+        <header className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 w-full box-border">
           <div 
             onClick={() => navigateTo("home")} 
             className="flex items-center gap-3 md:gap-4 cursor-pointer group"
@@ -177,7 +177,7 @@ export default function App() {
           </nav>
         </header>
 
-        <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12 w-full overflow-hidden">
+        <main className="max-w-6xl mx-auto px-3 sm:px-6 py-8 md:py-12 w-full max-w-full overflow-hidden box-border">
           <AnimatePresence mode="wait">
             {showApache ? (
               <motion.div
@@ -185,7 +185,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="w-full"
+                className="w-full max-w-full"
               >
                 <button 
                   onClick={() => navigateTo("home")}
@@ -203,9 +203,9 @@ export default function App() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="space-y-12 py-6 w-full"
+                className="space-y-12 py-6 w-full max-w-full"
               >
-                <div className="text-center max-w-2xl mx-auto px-4">
+                <div className="text-center max-w-2xl mx-auto px-2">
                   <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
                     Katifetch <span className="text-[#00ff41]">repos</span>
                   </h2>
@@ -214,14 +214,14 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto px-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto px-2 w-full">
                   {officialRepos.map((repo, idx) => (
                     <a
                       key={idx}
                       href={repo.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="group p-5 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl"
+                      className="group p-5 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col justify-between space-y-4 shadow-xl w-full box-border"
                     >
                       <div className="space-y-2">
                         <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-green-500/20 transition-colors">
@@ -264,9 +264,9 @@ export default function App() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="space-y-12 py-6 w-full"
+                className="space-y-12 py-6 w-full max-w-full"
               >
-                <div className="text-center max-w-2xl mx-auto px-4">
+                <div className="text-center max-w-2xl mx-auto px-2">
                   <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
                     Support <span className="text-[#00ff41]">Katifetch</span>
                   </h2>
@@ -275,8 +275,8 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
-                  <div className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 transition-all duration-300 flex flex-col justify-between">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-2 w-full">
+                  <div className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 transition-all duration-300 flex flex-col justify-between w-full box-border">
                     <div>
                       <div className="text-2xl mb-3">💻</div>
                       <h3 className="text-base font-bold text-white mb-2 font-mono">Contribute Code</h3>
@@ -294,7 +294,7 @@ export default function App() {
                     </a>
                   </div>
 
-                  <div className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 transition-all duration-300">
+                  <div className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 transition-all duration-300 w-full box-border">
                     <div className="text-2xl mb-3">📦</div>
                     <h3 className="text-base font-bold text-white mb-2 font-mono">Package It</h3>
                     <p className="text-slate-400 text-xs leading-relaxed font-sans">
@@ -302,7 +302,7 @@ export default function App() {
                     </p>
                   </div>
 
-                  <div className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 transition-all duration-300">
+                  <div className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 transition-all duration-300 w-full box-border">
                     <div className="text-2xl mb-3">📸</div>
                     <h3 className="text-base font-bold text-white mb-2 font-mono">Share Your Setup</h3>
                     <p className="text-slate-400 text-xs leading-relaxed font-sans">
@@ -323,9 +323,9 @@ export default function App() {
             ) : (
               
               /* SECCIÓN: HOME LANDING */
-              <motion.div key="landing-session" exit={{ opacity: 0 }} className="w-full max-w-full">
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center w-full">
-                  <div className="w-full flex justify-center order-1 md:order-2">
+              <motion.div key="landing-session" exit={{ opacity: 0 }} className="w-full max-w-full overflow-hidden box-border">
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center w-full max-w-full box-border">
+                  <div className="w-full flex justify-center order-1 md:order-2 px-2 box-border">
                     <img 
                       src={import.meta.env.BASE_URL + "infokati.png"}  
                       alt="Katifetch info" 
@@ -333,16 +333,16 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="space-y-4 md:space-y-6 text-center md:text-left order-2 md:order-1 w-full max-w-md md:max-w-none mx-auto">
+                  <div className="space-y-4 md:space-y-6 text-center md:text-left order-2 md:order-1 w-full max-w-full mx-auto px-2 box-border">
                     <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white break-words">
                       Katifetch — system info with <span className="text-[#00ff41] drop-shadow-[0_0_8px_rgba(0,255,65,0.4)]">style</span>
                     </h2>
-                    <p className="text-slate-400 text-xs sm:text-sm md:text-base px-2 sm:px-0">
+                    <p className="text-slate-400 text-xs sm:text-sm md:text-base">
                       Lightweight, cross-platform, and fully customizable. Works on
                       Linux, macOS, Windows, Termux, and more.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start px-2 sm:px-0">
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start w-full box-border">
                       <button
                         onClick={() => setShowInfo(!showInfo)}
                         className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-green-600 text-white text-sm font-bold shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:bg-green-500 transition"
@@ -363,7 +363,7 @@ export default function App() {
                       <motion.div 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
-                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-[11px] sm:text-xs text-left text-slate-300 font-mono break-words w-full"
+                        className="p-4 mt-4 rounded-xl bg-green-950/10 border border-green-500/20 text-[11px] sm:text-xs text-left text-slate-300 font-mono break-words w-full box-border"
                       >
                         Katifetch is a lightweight terminal system info tool, inspired by Neofetch. It has been adapted for multiple platforms including Windows, macOS, ChromeOS, and Android (Termux).
                       </motion.div>
@@ -371,7 +371,7 @@ export default function App() {
                   </div>
                 </section>
 
-                <div className="mt-14 md:mt-24 space-y-14 md:space-y-24 w-full max-w-full overflow-hidden">
+                <div className="mt-14 md:mt-24 space-y-14 md:space-y-24 w-full max-w-full overflow-hidden box-border">
                   <LogoRequest />
                   <InstallerCard />
                   <RiceGallery />
@@ -380,7 +380,7 @@ export default function App() {
             )}
           </AnimatePresence>
           
-          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 w-full">
+          <footer className="mt-20 border-t border-white/5 pt-8 pb-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 w-full max-w-full box-border">
             <div>
               © {new Date().getFullYear()} Katifetch — 
               <button 
@@ -396,11 +396,12 @@ export default function App() {
               href="https://repology.org/project/katifetch/versions"
               target="_blank"
               rel="noreferrer"
-              className="opacity-80 hover:opacity-100 transition-opacity"
+              className="opacity-80 hover:opacity-100 transition-opacity max-w-full overflow-hidden"
             >
               <img 
                 src="https://repology.org/badge/vertical-allrepos/katifetch.svg" 
                 alt="Packaging status" 
+                className="max-w-full h-auto"
               />
             </a>
           </footer>
