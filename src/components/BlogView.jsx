@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Calendar, ArrowRight, X, ExternalLink } from "lucide-react";
+import { BookOpen, Calendar, ArrowRight, ArrowLeft, ExternalLink } from "lucide-react";
 
 export default function BlogView() {
+  const [activeSlug, setActiveSlug] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedPost, setSelectedPost] = useState(null);
 
   const posts = [
     {
+      slug: "test-blog-title-1",
       title: "Test Blog Title",
       date: "October 2026",
       summary: "test blog",
@@ -15,6 +16,7 @@ export default function BlogView() {
       url: "https://github.com/ximimoments/katifetch"
     },
     {
+      slug: "test-blog-title-2",
       title: "Test Blog Title",
       date: "October 2026",
       summary: "test blog",
@@ -23,6 +25,63 @@ export default function BlogView() {
       url: "https://github.com/ximimoments/katifetch"
     }
   ];
+
+  const currentPost = posts.find((p) => p.slug === activeSlug);
+
+  if (currentPost) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="space-y-8 py-6 max-w-3xl mx-auto px-4 font-sans text-slate-200"
+      >
+        <button
+          onClick={() => setActiveSlug(null)}
+          className="inline-flex items-center gap-2 text-xs font-mono text-green-400 hover:text-green-300 bg-green-500/10 border border-green-500/30 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+        >
+          <ArrowLeft size={14} />
+          <span>Back to Blog</span>
+        </button>
+
+        <div className="space-y-3 border-b border-white/10 pb-6">
+          <div className="flex items-center gap-2 text-xs font-mono text-green-500/70">
+            <Calendar size={14} />
+            <span>{currentPost.date}</span>
+          </div>
+          <h1 className="text-3xl font-extrabold text-white font-mono">
+            {currentPost.title}
+          </h1>
+        </div>
+
+        {currentPost.image && (
+          <div 
+            onClick={() => setSelectedImage(currentPost.image)}
+            className="rounded-xl overflow-hidden border border-white/10 bg-black/60 cursor-pointer max-h-96"
+          >
+            <img src={currentPost.image} alt={currentPost.title} className="w-full h-full object-cover" />
+          </div>
+        )}
+
+        <div className="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p>{currentPost.content}</p>
+        </div>
+
+        <div className="pt-6 border-t border-white/10 flex justify-end">
+          <a
+            href={currentPost.url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-mono hover:bg-green-500/20 transition-colors"
+          >
+            <BookOpen size={14} />
+            <span>View on GitHub</span>
+            <ExternalLink size={12} />
+          </a>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
@@ -41,10 +100,11 @@ export default function BlogView() {
       </div>
 
       <div className="space-y-6">
-        {posts.map((post, idx) => (
+        {posts.map((post) => (
           <article 
-            key={idx}
-            className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col space-y-4 shadow-xl group overflow-hidden"
+            key={post.slug}
+            onClick={() => setActiveSlug(post.slug)}
+            className="p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-green-500/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col space-y-4 shadow-xl group overflow-hidden cursor-pointer"
           >
             {post.image && (
               <div 
@@ -52,7 +112,7 @@ export default function BlogView() {
                   e.stopPropagation();
                   setSelectedImage(post.image);
                 }}
-                className="w-full h-48 sm:h-64 rounded-lg overflow-hidden border border-white/10 bg-black/60 block cursor-pointer relative group/img"
+                className="w-full h-48 sm:h-64 rounded-lg overflow-hidden border border-white/10 bg-black/60 block relative group/img"
                 title="Click to enlarge image"
               >
                 <img 
@@ -77,87 +137,19 @@ export default function BlogView() {
             </div>
 
             <div className="pt-2 flex items-center justify-between">
-              <button
-                onClick={() => setSelectedPost(post)}
-                className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-green-400 transition-colors cursor-pointer"
-              >
+              <span className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 group-hover:text-green-400 transition-colors">
                 <BookOpen size={14} />
                 <span>Read full post</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              </span>
 
-              <a
-                href={post.url}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 hover:text-slate-300 transition-colors"
-              >
-                <span>GitHub</span>
-                <ExternalLink size={12} />
-              </a>
+              <span className="text-xs font-mono text-slate-500">
+                Katifetch DevLog
+              </span>
             </div>
           </article>
         ))}
       </div>
-
-      <AnimatePresence>
-        {selectedPost && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedPost(null)}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-[#0b0f19] border border-green-500/30 rounded-2xl p-6 sm:p-8 max-w-2xl w-full max-h-[85vh] overflow-y-auto relative shadow-[0_0_40px_rgba(0,255,65,0.15)] text-slate-200 cursor-default"
-            >
-              <button
-                onClick={() => setSelectedPost(null)}
-                className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 bg-white/5 rounded-full transition-colors cursor-pointer"
-              >
-                <X size={18} />
-              </button>
-
-              <div className="flex items-center gap-2 text-xs font-mono text-green-400 mb-2">
-                <Calendar size={14} />
-                <span>{selectedPost.date}</span>
-              </div>
-
-              <h2 className="text-2xl font-bold font-mono text-white mb-4">
-                {selectedPost.title}
-              </h2>
-
-              {selectedPost.image && (
-                <div className="mb-6 rounded-lg overflow-hidden border border-white/10 max-h-60">
-                  <img src={selectedPost.image} alt={selectedPost.title} className="w-full h-full object-cover" />
-                </div>
-              )}
-
-              <div className="space-y-4 text-sm font-sans text-slate-300 leading-relaxed border-t border-white/10 pt-4">
-                <p>{selectedPost.content}</p>
-              </div>
-
-              <div className="mt-8 pt-4 border-t border-white/10 flex justify-end">
-                <a
-                  href={selectedPost.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-mono hover:bg-green-500/20 transition-colors"
-                >
-                  <BookOpen size={14} />
-                  <span>View repository on GitHub</span>
-                  <ExternalLink size={12} />
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <AnimatePresence>
         {selectedImage && (
@@ -169,12 +161,6 @@ export default function BlogView() {
             className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer"
           >
             <div className="relative max-w-5xl w-full max-h-[90vh] flex items-center justify-center">
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute -top-10 right-0 text-slate-400 hover:text-white p-1 bg-white/10 rounded-full transition-colors cursor-pointer"
-              >
-                <X size={20} />
-              </button>
               <img
                 src={selectedImage}
                 alt="Enlarged screenshot"
